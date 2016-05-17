@@ -1,0 +1,54 @@
+{
+  "name": "voyaTable",
+  "version": "0.0.1",
+  "description": "tbale component for deep architecture",
+  "directories": {
+    "test": "test",
+    "packages": "jspm_packages"
+  },
+  "scripts": {
+    "check": "node_modules/.bin/check-build",
+    "docs": "node_modules/.bin/jsdoc -c conf.js -d docs",
+    "test": "node_modules/.bin/karma start karma.conf.js  --single-run"
+  },
+  "repository": {},
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.voya.net/Voya/deep-ui-voya-foobar/issues"
+  },
+  "devDependencies": {
+    "app-root-path": "^1.0.0",
+    "browser-sync": "^1.8.1",
+    "chai": "^2.2.0",
+    "check-build": "^1.5.0",
+    "gulp": "^3.9.0",
+    "gulp-jscs": "^2.0.0",
+    "gulp-jscs-stylish": "^1.1.2",
+    "gulp-jshint": "^1.11.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-shell": "^0.4.3",
+    "gulp-util": "^3.0.6",
+    "systemjs": "^0.18.17",
+    "jspm": "^0.16.2",
+    "require-dir": "^0.3.0"
+  },
+  "jscsConfig": {
+    "esnext": true
+  },
+  "jspm": {
+    "directories": {
+      "lib": "src"
+    },
+    "dependencies": {
+      "dom-delegate": "npm:dom-delegate@^2.0.3",
+      "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@^2.4.0",
+      "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@^3.1.0-beta"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.1.13",
+      "babel-runtime": "npm:babel-runtime@^5.1.13",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  }
+}

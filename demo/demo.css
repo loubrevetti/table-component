@@ -1,0 +1,175 @@
+/*base style sheet for component skinning*/
+voya-table {
+  font-family: Arial;
+  font-size: 12px;
+  display: block;
+  border-bottom: 1px solid #aaa; }
+  voya-table .deep-ui-voya-table {
+    background: #fff;
+    color: #666; }
+  voya-table .voya-table-column-wrapper {
+    width: 100%;
+    position: relative; }
+  voya-table .voya-table-column-wrapper:after {
+    display: table;
+    content: "";
+    clear: both; }
+
+/*base style sheet for component skinning*/
+voya-column {
+  position: relative;
+  float: left;
+  display: block;
+  padding: 0px 2%;
+  background: linear-gradient(to bottom, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+  border: 1px solid #aaa;
+  border-right: 0px;
+  min-height: 30px;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 14px;
+  color: #666; }
+  voya-column.cursor {
+    cursor: pointer; }
+  voya-column.orange {
+    background: linear-gradient(to bottom, #feccb1 0%, #f17432 50%, #ea5507 51%, #fb955e 100%);
+    color: #fff;
+    text-shadow: -1px -1px 1px #F2AD89, 1px 1px 1px #732903;
+    border: 1px solid #B04F07;
+    border-right: 0px; }
+  voya-column.white {
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Proxima Nova Bold', 'Proxima Nova'; }
+  voya-column.none {
+    border: 0px; }
+  voya-column div.label {
+    position: absolute;
+    display: block;
+    padding: 0px 0px;
+    top: 50%;
+    transform: translateY(-50%); }
+  voya-column div:after {
+    display: table;
+    content: "";
+    clear: both; }
+  voya-column div.voya-col-actions {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0px 5px; }
+  voya-column div.voya-col-actions > div {
+    padding: 0px 2px;
+    float: left; }
+  .mobile voya-column {
+    display: none; }
+
+voya-column:last-child {
+  border-right: 1px solid #aaa; }
+
+voya-column.orange:last-child {
+  border-right: 1px solid #B04F07; }
+
+voya-column.white:last-child {
+  border-right: 0px; }
+
+/*base style sheet for component skinning*/
+voya-row {
+  display: block;
+  border-bottom: 1px solid #aaa; }
+  voya-row .voya-row {
+    min-height: 20px; }
+  voya-row .voya-row:after {
+    display: table;
+    content: "";
+    clear: both; }
+  voya-row.even {
+    background: #eee; }
+  voya-row.vertical {
+    border-bottom: 0px; }
+  voya-row.none {
+    border-bottom: 0px; }
+  voya-row.horizontal {
+    border-bottom: 1px solid #aaa; }
+  .mobile voya-row {
+    margin: 15px 0px; }
+    .mobile voya-row.odd {
+      background: #eee; }
+
+voya-row:last-child {
+  border-bottom: 0px; }
+
+/*base style sheet for component skinning*/
+voya-cell {
+  float: left;
+  padding: 5px 2%;
+  border-left: 1px solid #aaa;
+  box-sizing: border-box; }
+  voya-cell span.label {
+    display: none; }
+  .vertical voya-cell {
+    border-left: 1px solid #aaa; }
+  .none voya-cell {
+    border-left: 0px; }
+  .horizontal voya-cell {
+    border-left: 0px; }
+  .white voya-cell {
+    font-size: 16px;
+    padding: 8px 2%;
+    font-family: 'Proxima Nova Bold', 'Proxima Nova'; }
+  .mobile voya-cell {
+    float: none;
+    display: block;
+    width: auto !important; }
+    .mobile voya-cell voya-row.white {
+      padding: 5px 2% 2px 2%; }
+    .mobile voya-cell.non-mobile {
+      display: none; }
+    .mobile voya-cell span.label {
+      display: inline; }
+    .mobile voya-cell.non-label span.label {
+      display: none; }
+    .mobile voya-cell .voya-cell {
+      font-size: 18px; }
+
+voya-cell:last-child {
+  border-right: 1px solid #aaa; }
+  .vertical voya-cell:last-child {
+    border-right: 1px solid #aaa; }
+  .none voya-cell:last-child {
+    border-right: 0px solid #aaa; }
+
+.none voya-cell:first-child {
+  border-left: 0px solid #aaa; }
+
+.horizontal voya-cell:first-child {
+  border-left: 1px solid #aaa; }
+
+.voya-col-sort {
+  width: 0;
+  padding: 0px !important; }
+
+.voya-col-sort.ASC {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 4px 8px 4px;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.45);
+  border-color: transparent transparent #999999 transparent; }
+
+.voya-col-sort.DESC {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 4px 0px 4px;
+  box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.45);
+  border-color: #999999 transparent transparent transparent; }
+
+.orange .voya-col-sort.DESC {
+  border-color: #B04F07 transparent transparent transparent; }
+
+.orange .voya-col-sort.ASC {
+  border-color: transparent transparent #B04F07 transparent; }

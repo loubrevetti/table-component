@@ -1,0 +1,20 @@
+/*base style sheet for component skinning*/
+voya-table{
+  font-family: Arial;
+  font-size: 12px;
+  display: block;
+  border-bottom:1px solid #aaa;
+  .deep-ui-voya-table{
+    background: #fff;
+    color:#666;
+  }
+  .voya-table-column-wrapper{
+    width:100%;
+    position:relative;
+  }
+  .voya-table-column-wrapper:after{
+    display:table;
+    content:"";
+    clear: both;
+  }
+}

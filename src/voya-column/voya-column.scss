@@ -1,0 +1,73 @@
+/*base style sheet for component skinning*/
+voya-column{
+    position: relative;
+    float: left;
+    display: block;
+    padding: 0px 2%;
+    background: linear-gradient(to bottom, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
+    border: 1px solid #aaa;
+    border-right: 0px;
+    min-height: 30px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 14px;
+    color: #666;
+    &.cursor{
+      cursor:pointer;
+    }
+
+    &.orange{
+      background: linear-gradient(to bottom, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%);
+      color: #fff;
+      text-shadow: -1px -1px 1px #F2AD89, 1px 1px 1px #732903;
+      border: 1px solid #B04F07;
+      border-right: 0px;
+    }
+    &.white{
+      background: #fff;
+      color: #000;
+      font-size:14px;
+      font-weight: bold;
+      font-family: 'Proxima Nova Bold', 'Proxima Nova';
+    }
+    &.none{
+      border: 0px;
+    }
+
+    div.label{
+      position: absolute;
+      display:block;
+      padding:0px 0px;
+      top:50%;
+      transform: translateY(-50%);
+    }
+    div:after{
+      display:table;
+      content:"";
+      clear: both;
+    }
+    div.voya-col-actions{
+      position: absolute;
+      right: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0px 5px;
+    }
+    div.voya-col-actions > div{
+      padding:0px 2px;
+      float:left;
+    }
+    //responsive mobile design css
+    .mobile &{
+      display:none;
+    }
+}
+voya-column:last-child{
+  border-right: 1px solid #aaa;
+}
+voya-column.orange:last-child{
+  border-right: 1px solid #B04F07;
+}
+voya-column.white:last-child{
+  border-right: 0px;
+}

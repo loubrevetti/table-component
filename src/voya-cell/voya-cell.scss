@@ -1,0 +1,62 @@
+/*base style sheet for component skinning*/
+voya-cell{
+    float: left;
+    padding: 5px 2%;
+    border-left: 1px solid #aaa;
+    box-sizing: border-box;
+    span.label{
+        display: none;
+    }
+    .vertical &{
+        border-left:1px solid #aaa;
+    }
+    .none &{
+        border-left:0px;
+    }
+    .horizontal &{
+        border-left:0px;
+    }
+    .white &{
+        font-size: 16px;
+        padding:8px 2%;
+        font-family: 'Proxima Nova Bold', 'Proxima Nova'
+    }
+    //responsive mobile design css
+    .mobile &{
+        float:none;
+        display: block;
+        width: auto !important;
+        voya-row.white{
+            padding:5px 2% 2px 2%;
+        }
+        &.non-mobile{
+            display: none;
+        }
+        span.label{
+            display:inline;
+        }
+        &.non-label span.label{
+            display:none;
+        }
+        .voya-cell{
+            font-size: 18px;
+        }
+    }
+}
+voya-cell:last-child {
+    border-right: 1px solid #aaa;
+    .vertical &{
+        border-right:1px solid #aaa;
+    }
+    .none &{
+        border-right:0px solid #aaa;
+    }
+}
+voya-cell:first-child {
+    .none &{
+        border-left:0px solid #aaa;
+    }
+    .horizontal &{
+        border-left:1px solid #aaa;
+    }
+}

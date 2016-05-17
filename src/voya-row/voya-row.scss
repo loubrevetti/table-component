@@ -1,0 +1,35 @@
+/*base style sheet for component skinning*/
+voya-row{
+  display:block;
+  border-bottom: 1px solid #aaa;
+  .voya-row{
+    min-height: 20px;
+  }
+  .voya-row:after{
+    display:table;
+    content:"";
+    clear: both;
+  }
+  &.even{
+    background: #eee;
+  }
+  &.vertical{
+    border-bottom:0px;
+  }
+  &.none{
+    border-bottom:0px;
+  }
+  &.horizontal{
+    border-bottom: 1px solid #aaa;
+  }
+  .mobile &{
+    margin:15px 0px;
+    &.odd{
+      background: #eee;
+    }
+  }
+
+}
+voya-row:last-child{
+  border-bottom: 0px;
+}

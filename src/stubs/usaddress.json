@@ -1,0 +1,16 @@
+{
+    "records":[
+        {"city":"Southington", "address":{"link":{"href":"http://www.google.com"}, "value":"33 Madalyn ln"},"state":"CT","zipcode":"06489"},
+        {"city":"Watertown", "address":{"link":{"href":"http://www.google.com"}, "value":"59 Windy Ridge"},"state":"CT","zipcode":"06080"},
+        {"city":"Watertown", "address":{"link":{"href":"http://www.google.com"}, "value":"75 Park ln"},"state":"CT","zipcode":"06080"},
+        {"city":"Wolcott", "address":{"link":{"href":"http://www.google.com"}, "value":"72 harrison dr"},"state":"CT","zipcode":"06716"},
+        {"city":"Wolcott", "address":{"link":{"href":"http://www.google.com"}, "value":"47 todd rd"},"state":"CT","zipcode":"06716"},
+        {"city":"Bethany", "address":{"link":{"href":"http://www.google.com"}, "value":"11 beth ln"},"state":"CT","zipcode":"06489"},
+        {"city":"Vernon", "address":{"link":{"href":"http://www.google.com"}, "value":"50 walsh st"},"state":"CT","zipcode":"06080"},
+        {"city":"Willimantic", "address":{"link":{"href":"http://www.google.com"}, "value":"75 forest blvd"},"state":"CT","zipcode":"06080"},
+        {"city":"Trumbull", "address":{"link":{"href":"http://www.google.com"}, "value":"2 main st"},"state":"CT","zipcode":"06716"},
+        {"city":"cheshire", "address":{"link":{"href":"http://www.google.com"}, "value":"76 resivor rd"},"state":"CT","zipcode":"06716"},
+        {"city":"Dallas", "address":{"link":{"href":"http://www.google.com"}, "value":"33 Madalyn ln"},"state":"CT","zipcode":"06489"},
+        {"city":"New", "address":{"link":{"href":"http://www.google.com"}, "value":"59 lever ln"},"state":"CT","zipcode":"06080"}
+    ]
+}
