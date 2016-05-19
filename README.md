@@ -48,4 +48,17 @@ table component for deep architecture, this table offers advanced features such 
 * **borders:** 3 values horizontal / vertical / none by default table has borders around all cells
   * ``` global instance: <voya-table borders="horizontal/vertical/none"></voya-table>```
 
+* **width:** sets width on column in percentage it will then even divide the widths of other column instances
+  * ```column instance: <voya-column width="60"></voya-column>```
+
+### adaptive *global and column-instance property*
+* **mobile-width:** tells the table that when the window width is equal to or less then the implmented value
+  * ``` global instance: <voya-table mobile-width="768"></voya-table>```
+
+* **mobile:** if set on column in its adaptive view it will display value in list
+  * ```column instance: <voya-column mobile></voya-column>```
+
+* **mobile-label:** if set on column in its adaptive view it will display label in list form cell header
+  * ```column instance: <voya-column mobile-label></voya-column>```
+
 
