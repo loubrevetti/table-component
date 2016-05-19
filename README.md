@@ -23,7 +23,7 @@ table component for deep architecture, this table offers advanced features such 
 
 Category | Feature
 ------------ | -------------
-Data model importing | api-url
+Data model importing | [api-url](#api-url)
 Data model importing | api-params
 Data model importing | name
 Sorting | sort
@@ -36,8 +36,8 @@ Adaptive | mobile
 Adaptive | mobile-label
 Cell-Templating | cell-template
 
-### data model importing *global-instance property*
-* **api-url:** property could be either a relative or absolute path to the service that would return a model or a static json file that is loaded with in the application, *note: if it is a static file then please set in api-params the property* **method:GET**
+##data model importing *global-instance property*
+* **api-url<a id="api-url"></a>:** property could be either a relative or absolute path to the service that would return a model or a static json file that is loaded with in the application, *note: if it is a static file then please set in api-params the property* **method:GET**
   * ex: ```relative-path: "/src/stub/staticFile.json", absolute-path: "http://www.voya.com/services/tableservice"``` 
 
 * **api-params:** property which allows developer to implement a reuqest body for service call with in table component
