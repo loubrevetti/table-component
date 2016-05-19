@@ -61,4 +61,10 @@ table component for deep architecture, this table offers advanced features such 
 * **mobile-label:** if set on column in its adaptive view it will display label in list form cell header
   * ```column instance: <voya-column mobile-label></voya-column>```
 
+### templatling *column-instance property*
+* **cell-template:** ability to write inline html to be implemented in column instance
+  * ``` column instance: <voya-column cell-template="<a href='${link.href}'>${^link.name}</a>"></voya-column>```
+  * **${data model property mapping}:** this signature allows for the table to locgically parse out within the model the value (could be deep nested)to be implemented within the template.
+  * **${^data model property mapping}**: the carat indicates that this property should be the actual workable value for the table to work with feautres such as sorting
+
 
