@@ -24,61 +24,61 @@ table component for deep architecture, this table offers advanced features such 
 Category | Feature
 ------------ | -------------
 Data model importing | [api-url](#api-url)
-Data model importing | api-params
-Data model importing | name
-Sorting | sort
-Theming | theme
-Theming | row-alternating
-Theming | borders
-Theming | width
-Adaptive | mobile-width
-Adaptive | mobile
-Adaptive | mobile-label
-Cell-Templating | cell-template
+Data model importing | [api-params](#api-params)
+Data model importing | [name](#name)
+Sorting | [sort](#sort)
+Theming | [theme](#theme)
+Theming | [row-alternating](#row-alternating)
+Theming | [borders](#borders)
+Theming | [width](#width)
+Adaptive | [mobile-width](#mobile-width)
+Adaptive | [mobile](#mobile)
+Adaptive | [mobile-label](#mobile-label)
+Cell-Templating | [cell-template](#cell-template)
 
 ##data model importing *global-instance property*
 * **api-url<a id="api-url"></a>:** property could be either a relative or absolute path to the service that would return a model or a static json file that is loaded with in the application, *note: if it is a static file then please set in api-params the property* **method:GET**
   * ex: ```relative-path: "/src/stub/staticFile.json", absolute-path: "http://www.voya.com/services/tableservice"``` 
 
-* **api-params:** property which allows developer to implement a reuqest body for service call with in table component
+* **api-params<a id="api-params"></a>:** property which allows developer to implement a reuqest body for service call with in table component
   * ex: ```{'method':"POST", 'payload':{'key1':'value1','key2':'value2','key3':'value3'}}```
 
-* **name:** property which allows developer search for key in data model if column label doe snot match key.
+* **name<a id="name"></a>:** property which allows developer search for key in data model if column label doe snot match key.
   * ex: ```<voya-column name="zipcode">zip</voya-column>```
 
 
 ### sorting *global and column-instance property*
-* **sort:** setting sort to true on column instance will allow that instance to have the capability to sort the data model by ascending then descending and finally back to original data, If set on  table then all columns become sortable. **please remember that column instance properites will always override globale properties**
+* **sort<a id="sort"></a>:** setting sort to true on column instance will allow that instance to have the capability to sort the data model by ascending then descending and finally back to original data, If set on  table then all columns become sortable. **please remember that column instance properites will always override globale properties**
   * ``` column instance: <voya-column sort="true/false"></voya-column>```
   * ``` global instance: <voya-table sort="true/false"></voya-table>```
 
 
 ### theming *global and column-instance property*
-* **theme:** setting theme to true on column instance will allow that instance to have the capability to theme that instance in 3 different themes, If set on  table then all columns become that theme. **please remember that column instance properites will always override globale properties**
+* **theme<a id="theme"></a>:** setting theme to true on column instance will allow that instance to have the capability to theme that instance in 3 different themes, If set on  table then all columns become that theme. **please remember that column instance properites will always override globale properties**
   * ``` column instance: <voya-column theme="white/orange/red"></voya-column>```
   * ``` global instance: <voya-table theme=""white/orange/red"></voya-table>```
 
-* **row-alternating:** if set true or defined rows will have slight grey backgorund in every other row
+* **row-alternating<a id="row-alternating"></a>:** if set true or defined rows will have slight grey backgorund in every other row
   * ``` global instance: <voya-table row-alternating></voya-table>```
 
-* **borders:** 3 values horizontal / vertical / none by default table has borders around all cells
+* **borders<a id="borders"></a>:** 3 values horizontal / vertical / none by default table has borders around all cells
   * ``` global instance: <voya-table borders="horizontal/vertical/none"></voya-table>```
 
-* **width:** sets width on column in percentage it will then even divide the widths of other column instances
+* **width<a id="width"></a>:** sets width on column in percentage it will then even divide the widths of other column instances
   * ```column instance: <voya-column width="60"></voya-column>```
 
 ### adaptive *global and column-instance property*
-* **mobile-width:** tells the table that when the window width is equal to or less then the implmented value
+* **mobile-width<a id="mobile-width"></a>:** tells the table that when the window width is equal to or less then the implmented value
   * ``` global instance: <voya-table mobile-width="768"></voya-table>```
 
-* **mobile:** if set on column in its adaptive view it will display value in list
+* **mobile<a id="mobile"></a>:** if set on column in its adaptive view it will display value in list
   * ```column instance: <voya-column mobile></voya-column>```
 
-* **mobile-label:** if set on column in its adaptive view it will display label in list form cell header
+* **mobile-label<a id="mobile-label"></a>:** if set on column in its adaptive view it will display label in list form cell header
   * ```column instance: <voya-column mobile-label></voya-column>```
 
 ### templatling *column-instance property*
-* **cell-template:** ability to write inline html to be implemented in column instance
+* **cell-template<a id="cell-template"></a>:** ability to write inline html to be implemented in column instance
   * ``` column instance: <voya-column cell-template="<a href='${link.href}'>${^link.name}</a>"></voya-column>```
   * **${data model property mapping}:** this signature allows for the table to locgically parse out within the model the value (could be deep nested)to be implemented within the template.
   * **${^data model property mapping}**: the carat indicates that this property should be the actual workable value for the table to work with feautres such as sorting
