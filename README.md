@@ -37,3 +37,9 @@ table component for deep architecture, this table offers advanced features such 
   * ``` global instance: <voya-table sort="true/false"></voya-table>```
 
 
+### theming *global and column-instance property*
+* **theme:** setting theme to true on column instance will allow that instance to have the capability to theme that instance in 3 different themes, If set on  table then all columns become that theme. **please remember that column instance properites will always override globale properties**
+  * ``` column instance: <voya-column theme="white/orange/red"></voya-column>```
+  * ``` global instance: <voya-table theme=""white/orange/red"></voya-table>```
+
+
