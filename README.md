@@ -26,8 +26,3 @@ table component for deep architecture, this table offers advanced features such 
 - **api-url:** property could be either a relative or absolute path to the service that would return a model or a static json file that is loaded with in the application, *note: if it is a static file then please set in api-params the property* **method:GET**
 
 - **api-params:** property which allows developer to implement a reuqest body for service call with in table component
- - ex: ```
-       {'method':"POST", 
-           'payload':{'key1':'value1','key2':'value2','key3':'value3'} 
-           }
-       ```
