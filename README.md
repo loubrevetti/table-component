@@ -20,7 +20,7 @@ table component for deep architecture, this table offers advanced features such 
     * *please note* **voya-table** *instaniates the table component object, in order to display data from model obtained by table component you must implement* **voya-column** *for each* **key value** *pair you wish to display. The logic of voya-column will use the column label as the* **key** *to search for in the* **model**. *If the key does not match the column label then you would simply need to add a* **name** *attribute to the* **voya-column** *instance.*
     
 #Features
-### data model importing
+### data model importing *global-instance property*
 * **api-url:** property could be either a relative or absolute path to the service that would return a model or a static json file that is loaded with in the application, *note: if it is a static file then please set in api-params the property* **method:GET**
   * ex: ```relative-path: "/src/stub/staticFile.json", absolute-path: "http://www.voya.com/services/tableservice"``` 
 
@@ -41,5 +41,11 @@ table component for deep architecture, this table offers advanced features such 
 * **theme:** setting theme to true on column instance will allow that instance to have the capability to theme that instance in 3 different themes, If set on  table then all columns become that theme. **please remember that column instance properites will always override globale properties**
   * ``` column instance: <voya-column theme="white/orange/red"></voya-column>```
   * ``` global instance: <voya-table theme=""white/orange/red"></voya-table>```
+
+* **row-alternating:** if set true or defined rows will have slight grey backgorund in every other row
+  * ``` global instance: <voya-table row-alternating></voya-table>```
+
+* **borders:** 3 values horizontal / vertical / none by default table has borders around all cells
+  * ``` global instance: <voya-table borders="horizontal/vertical/none"></voya-table>```
 
 
