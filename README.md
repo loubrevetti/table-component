@@ -25,7 +25,7 @@ Category | Feature
 ------------ | -------------
 Data model importing | [api-url](#api-url)
 Data model importing | [api-params](#api-params)
-Data model importing | [name](#name)
+Data model importing | [name](#names)
 Sorting | [sort](#sort)
 Theming | [theme](#theme)
 Theming | [row-alternating](#row-alternating)
@@ -43,7 +43,7 @@ Cell-Templating | [cell-template](#cell-template)
 * **api-params<a id="api-params"></a>:** property which allows developer to implement a reuqest body for service call with in table component
   * ex: ```{'method':"POST", 'payload':{'key1':'value1','key2':'value2','key3':'value3'}}```
 
-* **name<a id="name"></a>:** property which allows developer search for key in data model if column label doe snot match key.
+* **name<a id="names"></a>:** property which allows developer search for key in data model if column label doe snot match key.
   * ex: ```<voya-column name="zipcode">zip</voya-column>```
 
 
