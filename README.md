@@ -20,6 +20,22 @@ table component for deep architecture, this table offers advanced features such 
     * *please note* **voya-table** *instaniates the table component object, in order to display data from model obtained by table component you must implement* **voya-column** *for each* **key value** *pair you wish to display. The logic of voya-column will use the column label as the* **key** *to search for in the* **model**. *If the key does not match the column label then you would simply need to add a* **name** *attribute to the* **voya-column** *instance.*
     
 #Features
+
+Category | Feature
+------------ | -------------
+Data model importing | api-url
+Data model importing | api-params
+Data model importing | name
+Sorting | sort
+Theming | theme
+Theming | row-alternating
+Theming | borders
+Theming | width
+Adaptive | mobile-width
+Adaptive | mobile
+Adaptive | mobile-label
+Cell-Templating | cell-template
+
 ### data model importing *global-instance property*
 * **api-url:** property could be either a relative or absolute path to the service that would return a model or a static json file that is loaded with in the application, *note: if it is a static file then please set in api-params the property* **method:GET**
   * ex: ```relative-path: "/src/stub/staticFile.json", absolute-path: "http://www.voya.com/services/tableservice"``` 
