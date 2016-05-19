@@ -6,18 +6,14 @@ table component for deep architecture, this table offers advanced features such 
 2. run ```npm install```
 3. run ```jspm install```
 4. with in your application you would write the following tags
-  * ```
-    <voya-table api-url="" api-params={"method":"GET"}>
+  * ```<voya-table api-url="" api-params={"method":"GET"}>
       <voya-column>address</voya-column>
       <voya-column>city</voya-column>
       <voya-column>state</voya-column>
       <voya-column name="zipcode">zip</voya-column>
-    </voya-table>
-    ```
+    </voya-table>```
 
-  * data model assumption ```
-  {'address':'11 main st', 'city':'wolcott', 'state':'CT', 'zipcode':'06489'}
-  ```
+  * data model assumption ```{'address':'11 main st', 'city':'wolcott', 'state':'CT', 'zipcode':'06489}```
   
     * *please note* **voya-table** *instaniates the table component object, in order to display data from model obtained by table component you must implement* **voya-column** *for each* **key value** *pair you wish to display. The logic of voya-column will use the column label as the* **key** *to search for in the* **model**. *If the key does not match the column label then you would simply need to add a* **name** *attribute to the* **voya-column** *instance.*
     
