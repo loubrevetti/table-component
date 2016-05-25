@@ -10,6 +10,7 @@ export function VoyaColumnTemplate() {
         if(el.borders) el.classList.add(el.borders);
     }
     function updateColumnWidth(el){
+        if(!el.width) return;
         el.style.width=el.width;
     }
     return {

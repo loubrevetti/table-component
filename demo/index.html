@@ -46,10 +46,18 @@
 <!-- inline html for implementation to serve for demo purposes. -->
 <div style="z-index: 1; position: relative; max-width:965px; min-width:500px; margin:0px auto; padding:50px 0px;">
     <voya-table mobile-width="768" theme="white" row-alternating="true" borders="none" sort api-url="/src/stubs/usaddress.json" api-params={"method":"GET"}>
-        <voya-column  mobile width="60" cell-template="<a target='_blank' href='${link.href}'>${^value}</a>">address</voya-column>
+        <voya-column width="60" mobile cell-template="<a target='_blank' href='${link.href}'>${^value}</a>">address</voya-column>
         <voya-column cell-template="<span class='cityStyle'>${^city}</span>">city</voya-column>
         <voya-column>state</voya-column>
-        <voya-column mobile mobile-label name="zipcode">zip</voya-column>
+        <voya-column width="20" mobile mobile-label name="zipcode">zip</voya-column>
+    </voya-table>
+    <br/>
+    <br/>
+    <voya-table mobile-width="768" theme="orange" row-alternating="true" borders="none" sort api-url="/src/stubs/usaddress.json" api-params={"method":"GET"}>
+        <voya-column width="60" mobile cell-template="<a target='_blank' href='${link.href}'>${^value}</a>">address</voya-column>
+        <voya-column cell-template="<span class='cityStyle'>${^city}</span>">city</voya-column>
+        <voya-column>state</voya-column>
+        <voya-column width="20" mobile mobile-label name="zipcode">zip</voya-column>
     </voya-table>
 </div>
 <!-- DO NOT REMOVE NEEDED FOR HOOKS TO COMPILED CODE FROM GULP TASKS -->

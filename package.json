@@ -19,19 +19,24 @@
   },
   "devDependencies": {
     "app-root-path": "^1.0.0",
+    "babel-eslint": "^6.0.2",
     "browser-sync": "^1.8.1",
     "chai": "^2.2.0",
-    "check-build": "^1.5.0",
+    "colors": "^1.1.2",
     "gulp": "^3.9.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-jscs": "^2.0.0",
     "gulp-jscs-stylish": "^1.1.2",
-    "gulp-jshint": "^1.11.2",
     "gulp-sass": "^2.0.4",
     "gulp-shell": "^0.4.3",
     "gulp-util": "^3.0.6",
+    "jspm": "0.16.14",
+    "require-dir": "^0.3.0",
+    "selenium-standalone": "^4.7.0",
     "systemjs": "^0.18.17",
-    "jspm": "^0.16.2",
-    "require-dir": "^0.3.0"
+    "wdio-mocha-framework": "^0.2.12",
+    "webdriverio": "^4.0.5"
   },
   "jscsConfig": {
     "esnext": true

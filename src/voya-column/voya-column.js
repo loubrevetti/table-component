@@ -7,9 +7,10 @@ let _privateProperties = new WeakMap();
 export class VoyaColumn extends (HTMLElement || Element){
     createdCallback(){
         _features={sort:null, filter:null};
+        _privateProperties.set(this,_features);
         this.template = VoyaColumnTemplate();
         this.name = (!this.name)? this.innerHTML : this.name;
-        _privateProperties.set(this,_features);
+        this.width = (this.width) ? this.setWidth() : null;
         this.render();
         this.assembleFeatures()
     }
@@ -21,6 +22,12 @@ export class VoyaColumn extends (HTMLElement || Element){
 
     @property
     width
+
+    @property
+    colAmount
+
+    @property
+    flexWidth
 
     @property
     borders
@@ -54,8 +61,8 @@ export class VoyaColumn extends (HTMLElement || Element){
 
     render(){
         this.innerHTML=this.template.render(this)
-        if(!this.theme && !this.borders) return;
-        this.template.updateTheme(this);
+        if(this.theme || this.borders) this.template.updateTheme(this);
+        if(this.width) this.template.updateColumnWidth(this);
     }
     propertyChangedCallback(prop, oldValue, newValue) {
        if(oldValue !== newValue) {
@@ -65,7 +72,8 @@ export class VoyaColumn extends (HTMLElement || Element){
            if (prop == "theme" || prop == "borders") {
                this.template.updateTheme(this)
            }
-           if(prop == "width"){
+           if((prop == "colAmount" || prop == "flexWidth") && !this.width){
+               this.width = this.setColumnFlexWidth();
                this.template.updateColumnWidth(this)
            }
        }
@@ -81,6 +89,14 @@ export class VoyaColumn extends (HTMLElement || Element){
     removePreviousSorts(e){
         if(!_privateProperties.get(this).sort) return;
         _privateProperties.get(this).sort.removeActiveSort(e)
+    }
+    setWidth(){
+        if(!this.width) return null;
+        return this.width+"%";
+    }
+    setColumnFlexWidth(){
+        if(!this.flexWidth || !this.colAmount) return;
+        return this.flexWidth/this.colAmount+"%";
     }
 }
 document.registerElement('voya-column', VoyaColumn);
