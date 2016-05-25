@@ -708,14 +708,10 @@ $__System.register('5', [], function (_export) {
         var REQUEST = undefined;
         var RESPONSE = undefined;
         function buildRequest(params) {
-            apiParams.url = params.url ? buildURL(params.url) : apiParams.url;
+            apiParams.url = params.url ? params.url : apiParams.url;
             apiParams.method = params.payload.method ? params.payload.method : apiParams.method;
             if (apiParams.url.indexOf("stubs") == -1) apiParams.body = buildPayload(params);
             REQUEST = new Request(apiParams.url, apiParams);
-        }
-
-        function buildURL(url) {
-            return url.indexOf("://") != -1 ? url : window.location.origin + url;
         }
 
         function buildPayload(params) {
@@ -962,81 +958,6 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 					value: function propertyChangedCallback(prop, oldValue, newValue) {}
 
 					// assembly of child classes
-				}, {
-					key: 'updateColumns',
-					value: function updateColumns() {
-						var colAmount = this.columns.map(function (col) {
-							return !col.width ? col : null;
-						}).filter(function (col) {
-							return col ? col : null;
-						}).length,
-						    flexWidth = 100;
-						this.columns.map(function (col) {
-							return col.width ? parseInt(col.width) : null;
-						}).filter(function (width) {
-							return width ? parseInt(width) : null;
-						}).forEach(function (width) {
-							flexWidth = flexWidth - width;
-						});
-						this.columns = this.columns.map((function (col, idx) {
-							col.colAmount = colAmount;
-							col.flexWidth = flexWidth;
-							col.index = idx;
-							col.theme = col.theme == null ? this.theme : col.theme;
-							col.borders = col.borders == null ? this.borders : col.borders;
-							col.sort = col.sort == null ? this.sort : col.sort;
-							col.filter = col.filter == null ? this.filter : col.filter;
-							this.setColumnListeners(col);
-							return col;
-						}).bind(this));
-						this.template.addColumns(this);
-					}
-				}, {
-					key: 'buildColsAndRows',
-					value: function buildColsAndRows(e) {
-						this.updateColumns();
-						this.rows = this.data.map((function (rec, idx) {
-							var row = document.createElement("voya-row");
-							row.columns = this.columns;
-							row.rowData = rec;
-							row.borders = this.borders;
-							row.theme = this.theme;
-							row.alternate = this.rowAlternating ? idx % 2 === 0 ? "even" : "odd" : null;
-							return row;
-						}).bind(this));
-						this.template.addRows(this);
-					}
-
-					// end assembly of child classes
-
-					// behaviors and event handlers
-				}, {
-					key: 'setColumnListeners',
-					value: function setColumnListeners(col) {
-						if (col.sort) col.addEventListener("columnSort", (function (e) {
-							this.sortData(e);
-						}).bind(this), false);
-						if (col.filter) col.addEventListener("columnFilter", (function (e) {
-							this.filterData(e);
-						}).bind(this), false);
-					}
-				}, {
-					key: 'windowListener',
-					value: function windowListener() {
-						window.addEventListener("resize", (function (e) {
-							this.convertToMobile(e);
-						}).bind(this));
-					}
-				}, {
-					key: 'convertToMobile',
-					value: function convertToMobile(e) {
-						var windowWidth = e ? e.target.outerWidth : window.outerWidth;
-						var methodChoice = windowWidth <= this.mobileWidth ? "add" : "remove";
-						this.classList[methodChoice]("mobile");
-					}
-
-					// end behaviors and event handlers
-
 					//service assembelies and behaviors
 				}, {
 					key: 'buildServices',
@@ -1079,6 +1000,80 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 					value: function filterData(e) {}
 
 					//end service assembelies and behaviors
+					// end assembly of child classes
+				}, {
+					key: 'buildColsAndRows',
+					value: function buildColsAndRows(e) {
+						this.updateColumns();
+						this.rows = this.data.map((function (rec, idx) {
+							var row = document.createElement("voya-row");
+							row.columns = this.columns;
+							row.rowData = rec;
+							row.borders = this.borders;
+							row.theme = this.theme;
+							row.alternate = this.rowAlternating ? idx % 2 === 0 ? "even" : "odd" : null;
+							return row;
+						}).bind(this));
+						this.template.addRows(this);
+					}
+				}, {
+					key: 'updateColumns',
+					value: function updateColumns() {
+						var colAmount = this.columns.map(function (col) {
+							return !col.width ? col : null;
+						}).filter(function (col) {
+							return col ? col : null;
+						}).length,
+						    flexWidth = 100;
+						this.columns.map(function (col) {
+							return col.width ? parseInt(col.width) : null;
+						}).filter(function (width) {
+							return width ? parseInt(width) : null;
+						}).forEach(function (width) {
+							flexWidth = flexWidth - width;
+						});
+						this.columns = this.columns.map((function (col, idx) {
+							col.colAmount = colAmount;
+							col.flexWidth = flexWidth;
+							col.index = idx;
+							col.theme = col.theme == null ? this.theme : col.theme;
+							col.borders = col.borders == null ? this.borders : col.borders;
+							col.sort = col.sort == null ? this.sort : col.sort;
+							col.filter = col.filter == null ? this.filter : col.filter;
+							this.setColumnListeners(col);
+							return col;
+						}).bind(this));
+						this.template.addColumns(this);
+					}
+
+					// end assembly of child classes
+					// behaviors and event handlers
+				}, {
+					key: 'setColumnListeners',
+					value: function setColumnListeners(col) {
+						if (col.sort) col.addEventListener("columnSort", (function (e) {
+							this.sortData(e);
+						}).bind(this), false);
+						if (col.filter) col.addEventListener("columnFilter", (function (e) {
+							this.filterData(e);
+						}).bind(this), false);
+					}
+				}, {
+					key: 'windowListener',
+					value: function windowListener() {
+						window.addEventListener("resize", (function (e) {
+							this.convertToMobile(e);
+						}).bind(this));
+					}
+				}, {
+					key: 'convertToMobile',
+					value: function convertToMobile(e) {
+						var windowWidth = e ? e.target.outerWidth : window.outerWidth;
+						var methodChoice = windowWidth <= this.mobileWidth ? "add" : "remove";
+						this.classList[methodChoice]("mobile");
+					}
+
+					// end behaviors and event handlers
 				}, {
 					key: 'mobileWidth',
 					decorators: [nullable, property],

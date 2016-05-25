@@ -3,14 +3,10 @@ export function restAssembly(){
     let REQUEST;
     let RESPONSE;
     function buildRequest(params){
-        apiParams.url = (params.url) ? buildURL(params.url) : apiParams.url;
+        apiParams.url = (params.url) ? params.url : apiParams.url;
         apiParams.method = (params.payload.method) ? params.payload.method : apiParams.method;
         if(apiParams.url.indexOf("stubs")==-1) apiParams.body = buildPayload(params);
         REQUEST = new Request(apiParams.url,apiParams);
-    }
-
-    function buildURL(url){
-        return (url.indexOf("://")!=-1)? url : window.location.origin+url;
     }
 
     function buildPayload(params){
