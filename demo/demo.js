@@ -4,10 +4,17 @@ let eventMethod=(addEventListener) ? {addEventListener:"DOMContentLoaded"} : {at
 window[Object.keys(eventMethod)[0]](eventMethod[Object.keys(eventMethod)[0]],appLoaded)
 
 function appLoaded(){
-	let menu = document.querySelector('.toolbar');
+	let toolbar = document.querySelector('.toolbar');
 	let voyaTable = document.querySelector('voya-table');
-	
-	delegate(menu).on('click',"li",function(e){
-			console.log('this menu is here and ready for voya-table to be  leveraged to display features to devs')
-		});	
+
+	delegate(toolbar).on('click',"li",function(e){
+		let value = (e.target.dataset.value=='true' || e.target.dataset.value=='false')? JSON.parse(e.target.dataset.value):e.target.dataset.value;
+		if(e.target.dataset.property.indexOf("column")!=-1){
+			let column = document.querySelector("voya-column");
+			column[e.target.dataset.property.substring(e.target.dataset.property.indexOf(":")+1)]=value
+			return;
+		}
+
+		voyaTable[e.target.dataset.property]=(e.target.dataset.value.indexOf(":")!=-1) ? buildValue(e) : value
+	});
 }

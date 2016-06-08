@@ -14,6 +14,8 @@ voya-table {
     display: table;
     content: "";
     clear: both; }
+  voya-table.mobile .deep-ui-voya-table {
+    background: transparent; }
 
 /*base style sheet for component skinning*/
 voya-column {
@@ -44,7 +46,7 @@ voya-column {
     font-weight: bold;
     font-family: 'Proxima Nova Bold', 'Proxima Nova'; }
   voya-column.none {
-    border: 0px; }
+    border: 0px !important; }
   voya-column div.label {
     position: absolute;
     display: block;
@@ -72,9 +74,6 @@ voya-column:last-child {
 
 voya-column.orange:last-child {
   border-right: 1px solid #B04F07; }
-
-voya-column.white:last-child {
-  border-right: 0px; }
 
 /*base style sheet for component skinning*/
 voya-row {

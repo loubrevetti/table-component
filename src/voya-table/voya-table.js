@@ -70,12 +70,31 @@ class VoyaTable extends (HTMLElement || Element){
 		render(){
 			this.innerHTML=this.template.render(this);
 		}
-		propertyChangedCallback(prop, oldValue, newValue) {}
+		updateTableView(prop){
+			if(prop==="mobileWidth"){
+				this.convertToMobile();
+				this.windowListener();
+				return;
+			}
+			this.rows.forEach(function(row){row[prop]=this[prop];}.bind(this))
+			this.columns.forEach(function(col){
+				col[prop]=this[prop];
+				if(prop==="sort" || prop==="filter"){
+					this.setColumnListeners(col);
+				}
+			}.bind(this))
+		}
+		propertyChangedCallback(prop, oldValue, newValue) {
+			if(oldValue === newValue) return;
+			if((prop=="theme" || prop=="borders" || prop=="rowAlternating" || prop=="sort" || prop=="mobileWidth")){
+				this.updateTableView(prop);
+			}
+		}
 		// assembly of child classes
 		//service assembelies and behaviors
 		buildServices() {
 			if (!this.apiUrl) return;
-			let payload = JSON.parse(this.apiParams);
+			let payload = (this.apiParams)? JSON.parse(this.apiParams) : null;
 			let apiParams={url:this.apiUrl,payload:payload};
 			this.services.api(apiParams);
 		}
@@ -110,7 +129,7 @@ class VoyaTable extends (HTMLElement || Element){
 				row.rowData = rec;
 				row.borders = this.borders;
 				row.theme = this.theme;
-				row.alternate =(this.rowAlternating)? (idx % 2===0)? "even": "odd" :null;
+				row.idx=idx;
 				return row
 			}.bind(this))
 			this.template.addRows(this);
@@ -121,6 +140,7 @@ class VoyaTable extends (HTMLElement || Element){
 				flexWidth = flexWidth - width;
 			});
 			this.columns = this.columns.map(function(col,idx){
+				col.siblings = this.columns;
 				col.colAmount = colAmount;
 				col.flexWidth = flexWidth;
 				col.index = idx;

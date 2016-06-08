@@ -33,28 +33,30 @@
 	<div class="voyaWallpaper"></div>
 </div>
 <ul class="toolbar">
-	
-		<li data-property="null" data-value="null">feature 0</li>
-	
-		<li data-property="null" data-value="null">feature 1</li>
-	
-		<li data-property="null" data-value="null">feature 2</li>
-	
-		<li data-property="null" data-value="null">feature 3</li>
-	
+    <li data-property="theme" data-value="white">white</li>
+
+    <li data-property="column:theme" data-value="orange">column instance orange</li>
+
+    <li data-property="theme" data-value="orange">orange</li>
+
+    <li data-property="rowAlternating" data-value="true">row alternating</li>
+
+    <li data-property="borders" data-value="none">no borders</li>
+
+    <li data-property="borders" data-value="vertical">vertical borders</li>
+
+    <li data-property="borders" data-value="horizontal">horizontal borders</li>
+
+    <li data-property="column:width" data-value="60">instance column width</li>
+
+    <li data-property="mobileWidth" data-value="768">responsive table</li>
+
+    <li data-property="sort" data-value="true">table sort</li>
 </ul>
 <!-- inline html for implementation to serve for demo purposes. -->
 <div style="z-index: 1; position: relative; max-width:965px; min-width:500px; margin:0px auto; padding:50px 0px;">
-    <voya-table mobile-width="768" theme="white" row-alternating="true" borders="none" sort api-url="stubs/usaddress.json" api-params={"method":"GET"}>
-        <voya-column width="60" mobile cell-template="<a target='_blank' href='${link.href}'>${^value}</a>">address</voya-column>
-        <voya-column cell-template="<span class='cityStyle'>${^city}</span>">city</voya-column>
-        <voya-column>state</voya-column>
-        <voya-column width="20" mobile mobile-label name="zipcode">zip</voya-column>
-    </voya-table>
-    <br/>
-    <br/>
-    <voya-table mobile-width="768" theme="orange" row-alternating="true" borders="none" sort api-url="stubs/usaddress.json" api-params={"method":"GET"}>
-        <voya-column width="60" mobile cell-template="<a target='_blank' href='${link.href}'>${^value}</a>">address</voya-column>
+    <voya-table api-url="stubs/usaddress.json" api-params={"method":"GET"}>
+        <voya-column mobile cell-template="<a target='_blank' href='${link.href}'>${^value}</a>">address</voya-column>
         <voya-column cell-template="<span class='cityStyle'>${^city}</span>">city</voya-column>
         <voya-column>state</voya-column>
         <voya-column width="20" mobile mobile-label name="zipcode">zip</voya-column>

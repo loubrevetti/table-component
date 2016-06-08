@@ -704,20 +704,20 @@ $__System.register('5', [], function (_export) {
     _export('restAssembly', restAssembly);
 
     function restAssembly() {
-        var apiParams = { method: "POST", headers: { 'Content-Type': 'application/json' } };
+        var apiParams = { method: "POST", headers: { 'Content-Type': 'application/json', 'credentials': 'include', 'mode': 'cors' } };
         var REQUEST = undefined;
         var RESPONSE = undefined;
         function buildRequest(params) {
             apiParams.url = params.url ? params.url : apiParams.url;
-            apiParams.method = params.payload.method ? params.payload.method : apiParams.method;
-            if (apiParams.url.indexOf("stubs") == -1) apiParams.body = buildPayload(params);
+            apiParams.method = params.payload && params.payload.method ? params.payload.method : apiParams.method;
+            if (apiParams.url.indexOf("stubs") == -1 && apiParams.method.toLowerCase() !== "get" && params.payload) apiParams.body = buildPayload(params);
             REQUEST = new Request(apiParams.url, apiParams);
         }
 
         function buildPayload(params) {
             var data = new FormData();
             for (var item in params.payload) {
-                data.append(item, params.body[item]);
+                data.append(item, params.payload[item]);
             }
             return data;
         }
@@ -954,8 +954,31 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 						this.innerHTML = this.template.render(this);
 					}
 				}, {
+					key: 'updateTableView',
+					value: function updateTableView(prop) {
+						if (prop === "mobileWidth") {
+							this.convertToMobile();
+							this.windowListener();
+							return;
+						}
+						this.rows.forEach((function (row) {
+							row[prop] = this[prop];
+						}).bind(this));
+						this.columns.forEach((function (col) {
+							col[prop] = this[prop];
+							if (prop === "sort" || prop === "filter") {
+								this.setColumnListeners(col);
+							}
+						}).bind(this));
+					}
+				}, {
 					key: 'propertyChangedCallback',
-					value: function propertyChangedCallback(prop, oldValue, newValue) {}
+					value: function propertyChangedCallback(prop, oldValue, newValue) {
+						if (oldValue === newValue) return;
+						if (prop == "theme" || prop == "borders" || prop == "rowAlternating" || prop == "sort" || prop == "mobileWidth") {
+							this.updateTableView(prop);
+						}
+					}
 
 					// assembly of child classes
 					//service assembelies and behaviors
@@ -963,7 +986,7 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 					key: 'buildServices',
 					value: function buildServices() {
 						if (!this.apiUrl) return;
-						var payload = JSON.parse(this.apiParams);
+						var payload = this.apiParams ? JSON.parse(this.apiParams) : null;
 						var apiParams = { url: this.apiUrl, payload: payload };
 						this.services.api(apiParams);
 					}
@@ -1011,7 +1034,7 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 							row.rowData = rec;
 							row.borders = this.borders;
 							row.theme = this.theme;
-							row.alternate = this.rowAlternating ? idx % 2 === 0 ? "even" : "odd" : null;
+							row.idx = idx;
 							return row;
 						}).bind(this));
 						this.template.addRows(this);
@@ -1033,6 +1056,7 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 							flexWidth = flexWidth - width;
 						});
 						this.columns = this.columns.map((function (col, idx) {
+							col.siblings = this.columns;
 							col.colAmount = colAmount;
 							col.flexWidth = flexWidth;
 							col.index = idx;
@@ -1397,13 +1421,28 @@ $__System.register("1a", [], function (_export) {
             });
         }
         function updateRowTheme(el) {
-            if (el.alternate) {
-                el.classList.add(el.alternate);
+            if (el.rowAlternating) {
+                el.classList.forEach(function (CSSclass) {
+                    if (CSSclass.indexOf("odd") != -1 || CSSclass.indexOf("even") != -1) {
+                        el.classList.remove(CSSclass);
+                    }
+                });
+                el.classList.add(el.rowAlternating);
             }
             if (el.borders) {
+                el.classList.forEach(function (CSSclass) {
+                    if (CSSclass.indexOf("vertical") != -1 || CSSclass.indexOf("horizontal") != -1 || CSSclass.indexOf("none") != -1) {
+                        el.classList.remove(CSSclass);
+                    }
+                });
                 el.classList.add(el.borders);
             }
             if (el.theme) {
+                el.classList.forEach(function (CSSclass) {
+                    if (CSSclass.indexOf("orange") != -1 || CSSclass.indexOf("white") != -1) {
+                        el.classList.remove(CSSclass);
+                    }
+                });
                 el.classList.add(el.theme);
             }
         }
@@ -1454,9 +1493,11 @@ $__System.register('1b', ['11', '12', '13', '14', '15', '16', '1a'], function (_
 
                     _defineDecoratedPropertyDescriptor(this, 'template', _instanceInitializers);
 
+                    _defineDecoratedPropertyDescriptor(this, 'idx', _instanceInitializers);
+
                     _defineDecoratedPropertyDescriptor(this, 'borders', _instanceInitializers);
 
-                    _defineDecoratedPropertyDescriptor(this, 'alternate', _instanceInitializers);
+                    _defineDecoratedPropertyDescriptor(this, 'rowAlternating', _instanceInitializers);
 
                     _defineDecoratedPropertyDescriptor(this, 'rowData', _instanceInitializers);
 
@@ -1471,7 +1512,7 @@ $__System.register('1b', ['11', '12', '13', '14', '15', '16', '1a'], function (_
                         this.template = VoyaRowTemplate();
                         this.cells = [];
                         this.render();
-                        this.alternate;
+                        this.rowAlternating;
                     }
                 }, {
                     key: 'render',
@@ -1481,7 +1522,11 @@ $__System.register('1b', ['11', '12', '13', '14', '15', '16', '1a'], function (_
                 }, {
                     key: 'propertyChangedCallback',
                     value: function propertyChangedCallback(prop, oldValue, newValue) {
-                        if (prop === "alternate" || prop === "borders" || prop == "theme") {
+                        if (oldValue === newValue) return;
+                        if (prop === "rowAlternating") {
+                            this.rowAlternating = this.rowAlternating ? this.idx % 2 === 0 ? "even" : "odd" : null;
+                        }
+                        if (prop === "rowAlternating" || prop === "borders" || prop == "theme") {
                             this.template.updateRowTheme(this);
                         }
                         if (prop === "rowData") {
@@ -1510,12 +1555,17 @@ $__System.register('1b', ['11', '12', '13', '14', '15', '16', '1a'], function (_
                     initializer: null,
                     enumerable: true
                 }, {
+                    key: 'idx',
+                    decorators: [nullable, property],
+                    initializer: null,
+                    enumerable: true
+                }, {
                     key: 'borders',
                     decorators: [nullable, property],
                     initializer: null,
                     enumerable: true
                 }, {
-                    key: 'alternate',
+                    key: 'rowAlternating',
                     decorators: [nullable, property],
                     initializer: null,
                     enumerable: true
@@ -1771,7 +1821,7 @@ $__System.register('1e', ['1f'], function (_export) {
                 // if the attribute is present, with no value, it will evaluate to true
                 // the attribute will only be false if it's value is "false" (case-insensitive)
                 if (typeof value === 'string') {
-                    value = !/false/i.test(value);
+                    return !/false/i.test(value);
                 }
             case 'object':
                 if (typeof value === 'string' && value !== '') {
@@ -1786,6 +1836,7 @@ $__System.register('1e', ['1f'], function (_export) {
                     value = parseFloat(value);
                 }
         }
+
         return value;
     }
 
@@ -2306,7 +2357,7 @@ $__System.register('16', ['21', '23', '28', '40', '1f', '3f', '1e'], function (_
 
                         var attr = decamelize(prop, '-');
                         var value = this.getAttribute(attr);
-                        if (value != 'undefined') {
+                        if (value != undefined) {
                             this._properties[prop] = coerce(this.getAttribute(attr), type);
                         }
                     }
@@ -2467,8 +2518,22 @@ $__System.register("41", [], function (_export) {
             el.querySelector(".voya-col-actions").appendChild(button);
         }
         function updateTheme(el) {
-            if (el.theme) el.classList.add(el.theme);
-            if (el.borders) el.classList.add(el.borders);
+            if (el.theme) {
+                el.classList.forEach(function (CSSclass) {
+                    if (CSSclass.indexOf("orange") != -1 || CSSclass.indexOf("white") != -1) {
+                        el.classList.remove(CSSclass);
+                    }
+                });
+                el.classList.add(el.theme);
+            }
+            if (el.borders) {
+                el.classList.forEach(function (CSSclass) {
+                    if (CSSclass.indexOf("vertical") != -1 || CSSclass.indexOf("horizontal") != -1 || CSSclass.indexOf("none") != -1) {
+                        el.classList.remove(CSSclass);
+                    }
+                });
+                el.classList.add(el.borders);
+            }
         }
         function updateColumnWidth(el) {
             if (!el.width) return;
@@ -4189,11 +4254,18 @@ $__System.register('1', ['4', '19', '6e'], function (_export) {
 	var delegate, _Object$keys, eventMethod;
 
 	function appLoaded() {
-		var menu = document.querySelector('.toolbar');
+		var toolbar = document.querySelector('.toolbar');
 		var voyaTable = document.querySelector('voya-table');
 
-		delegate(menu).on('click', "li", function (e) {
-			console.log('this menu is here and ready for voya-table to be  leveraged to display features to devs');
+		delegate(toolbar).on('click', "li", function (e) {
+			var value = e.target.dataset.value == 'true' || e.target.dataset.value == 'false' ? JSON.parse(e.target.dataset.value) : e.target.dataset.value;
+			if (e.target.dataset.property.indexOf("column") != -1) {
+				var column = document.querySelector("voya-column");
+				column[e.target.dataset.property.substring(e.target.dataset.property.indexOf(":") + 1)] = value;
+				return;
+			}
+
+			voyaTable[e.target.dataset.property] = e.target.dataset.value.indexOf(":") != -1 ? buildValue(e) : value;
 		});
 	}
 	return {

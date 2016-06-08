@@ -4,7 +4,7 @@ var portNumber = 9000;
 // this task utilizes the browsersync plugin
 function getPortNumber(){
 	var port = process.argv.filter(function(item){return item.indexOf('port:')!=-1})[0]
-	return (port)? port.substring(port.indexOf(':')+1) : defaultPort;
+	return (port)? port.substring(port.indexOf(':')+1) : portNumber;
 }
 gulp.task('serve', ['build:demo', 'js:watch', 'sass:watch'], function(done) {
   portNumber = getPortNumber(); ;

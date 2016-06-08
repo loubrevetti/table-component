@@ -5,7 +5,7 @@ export class VoyaRow extends (HTMLElement || Element){
         this.template = VoyaRowTemplate();
         this.cells = [];
         this.render();
-        this.alternate;
+        this.rowAlternating;
     }
 
     @property
@@ -14,11 +14,15 @@ export class VoyaRow extends (HTMLElement || Element){
 
     @property
     @nullable
+    idx
+
+    @property
+    @nullable
     borders
 
     @property
     @nullable
-    alternate
+    rowAlternating
 
     @property
     @nullable
@@ -37,7 +41,11 @@ export class VoyaRow extends (HTMLElement || Element){
         this.innerHTML=this.template.render(this)
     }
     propertyChangedCallback(prop, oldValue, newValue) {
-        if(prop === "alternate" || prop === "borders" || prop == "theme"){
+        if(oldValue === newValue) return;
+        if(prop === "rowAlternating"){
+            this.rowAlternating = (this.rowAlternating)? (this.idx % 2===0)? "even": "odd" :null;
+        }
+        if(prop === "rowAlternating" || prop === "borders" || prop == "theme"){
             this.template.updateRowTheme(this)
         }
         if(prop ==="rowData") {

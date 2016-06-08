@@ -31,7 +31,7 @@ voya-column{
       font-family: 'Proxima Nova Bold', 'Proxima Nova';
     }
     &.none{
-      border: 0px;
+      border: 0px !important;
     }
 
     div.label{
@@ -67,7 +67,4 @@ voya-column:last-child{
 }
 voya-column.orange:last-child{
   border-right: 1px solid #B04F07;
-}
-voya-column.white:last-child{
-  border-right: 0px;
 }

@@ -17,4 +17,9 @@ voya-table{
     content:"";
     clear: both;
   }
+  &.mobile{
+    .deep-ui-voya-table {
+      background: transparent;
+    }
+  }
 }
