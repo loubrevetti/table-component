@@ -941,11 +941,11 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 						this.columns = _Array$slice(this.querySelectorAll("voya-column"));
 						this.render();
 						this.addEventListener("dataAssembled", this.buildColsAndRows.bind(this));
+						this.addEventListener("columnWidth", this.updateWidths.bind(this));
 						this.buildServices();
 						this.assembleData();
 						if (this.mobileWidth) {
-							this.convertToMobile();
-							this.windowListener();
+							this.updateMobileView();
 						}
 					}
 				}, {
@@ -957,19 +957,31 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 					key: 'updateTableView',
 					value: function updateTableView(prop) {
 						if (prop === "mobileWidth") {
-							this.convertToMobile();
-							this.windowListener();
+							this.updateMobileView();
 							return;
 						}
 						this.rows.forEach((function (row) {
 							row[prop] = this[prop];
 						}).bind(this));
 						this.columns.forEach((function (col) {
-							col[prop] = this[prop];
-							if (prop === "sort" || prop === "filter") {
-								this.setColumnListeners(col);
-							}
+							col[prop] = this[prop];prop === "sort" || prop === "filter" ? this.setColumnListeners(col) : null;
 						}).bind(this));
+					}
+				}, {
+					key: 'updateMobileView',
+					value: function updateMobileView() {
+						this.convertToMobile();
+						this.windowListener();
+					}
+				}, {
+					key: 'updateWidths',
+					value: function updateWidths() {
+						var _this = this;
+
+						this.updateColumns();
+						this.rows.map(function (row) {
+							return row.columns = _this.columns;
+						});
 					}
 				}, {
 					key: 'propertyChangedCallback',
@@ -980,7 +992,6 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 						}
 					}
 
-					// assembly of child classes
 					//service assembelies and behaviors
 				}, {
 					key: 'buildServices',
@@ -1023,7 +1034,7 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 					value: function filterData(e) {}
 
 					//end service assembelies and behaviors
-					// end assembly of child classes
+					// assembly of child classes
 				}, {
 					key: 'buildColsAndRows',
 					value: function buildColsAndRows(e) {
@@ -1043,13 +1054,13 @@ $__System.register('10', ['6', '8', '11', '12', '13', '14', '15', '16', 'f'], fu
 					key: 'updateColumns',
 					value: function updateColumns() {
 						var colAmount = this.columns.map(function (col) {
-							return !col.width ? col : null;
+							return !col.width || isNaN(col.width) ? col : null;
 						}).filter(function (col) {
 							return col ? col : null;
 						}).length,
 						    flexWidth = 100;
 						this.columns.map(function (col) {
-							return col.width ? parseInt(col.width) : null;
+							return !isNaN(col.width) ? parseInt(col.width) : null;
 						}).filter(function (width) {
 							return width ? parseInt(width) : null;
 						}).forEach(function (width) {
@@ -1224,7 +1235,7 @@ $__System.register("17", [], function (_export) {
 
     function VoyaCellTemplate() {
         function render(el) {
-            el.style.width = el.width;
+            el.style.width = isNaN(el.width) ? el.width : el.width + "%";;
             var content = el.cellTemplate ? el.cellTemplate : el.cellValue;
             var method = !el.mobile ? "add" : "remove";
             el.classList[method]("non-mobile");
@@ -1280,6 +1291,8 @@ $__System.register('18', ['7', '11', '12', '13', '14', '15', '16', '17', '19'], 
                     _get(Object.getPrototypeOf(VoyaCell.prototype), 'constructor', this).apply(this, arguments);
 
                     _defineDecoratedPropertyDescriptor(this, 'cellName', _instanceInitializers);
+
+                    _defineDecoratedPropertyDescriptor(this, 'cellViewName', _instanceInitializers);
 
                     _defineDecoratedPropertyDescriptor(this, 'width', _instanceInitializers);
 
@@ -1354,6 +1367,11 @@ $__System.register('18', ['7', '11', '12', '13', '14', '15', '16', '17', '19'], 
                     }
                 }, {
                     key: 'cellName',
+                    decorators: [property],
+                    initializer: null,
+                    enumerable: true
+                }, {
+                    key: 'cellViewName',
                     decorators: [property],
                     initializer: null,
                     enumerable: true
@@ -1532,12 +1550,29 @@ $__System.register('1b', ['11', '12', '13', '14', '15', '16', '1a'], function (_
                         if (prop === "rowData") {
                             this.buildCells();
                         }
+                        if (prop === "columns") {
+                            this.updateCellView();
+                        }
+                    }
+                }, {
+                    key: 'updateCellView',
+                    value: function updateCellView() {
+                        this.cells = this.cells.map((function (cell) {
+                            var col = this.columns.map(function (col) {
+                                return col.name === cell.cellViewName ? col : null;
+                            }).filter(function (col) {
+                                return col ? col : null;
+                            })[0];
+                            cell.width = col.width;
+                            return cell;
+                        }).bind(this));
                     }
                 }, {
                     key: 'buildCells',
                     value: function buildCells() {
                         this.cells = this.columns.map((function (col) {
                             var cell = document.createElement("voya-cell");
+                            cell.cellViewName = col.name;
                             cell.cellName = col.name;
                             cell.mobile = col.mobile;
                             cell.label = col.mobileLabel ? col.name : null;
@@ -2537,7 +2572,7 @@ $__System.register("41", [], function (_export) {
         }
         function updateColumnWidth(el) {
             if (!el.width) return;
-            el.style.width = el.width;
+            el.style.width = isNaN(el.width) ? el.width : el.width + "%";
         }
         return {
             render: render,
@@ -3843,6 +3878,8 @@ $__System.register('6d', ['11', '12', '13', '14', '15', '16', '19', '41', '60', 
 
                     _get(Object.getPrototypeOf(VoyaColumn.prototype), 'constructor', this).apply(this, arguments);
 
+                    _defineDecoratedPropertyDescriptor(this, 'event', _instanceInitializers);
+
                     _defineDecoratedPropertyDescriptor(this, 'index', _instanceInitializers);
 
                     _defineDecoratedPropertyDescriptor(this, 'data', _instanceInitializers);
@@ -3900,7 +3937,13 @@ $__System.register('6d', ['11', '12', '13', '14', '15', '16', '19', '41', '60', 
                             if (prop == "theme" || prop == "borders") {
                                 this.template.updateTheme(this);
                             }
-                            if ((prop == "colAmount" || prop == "flexWidth") && !this.width) {
+                            if (prop === "width") {
+                                this.width = this.setWidth();
+                                if (isNaN(this.width)) return;
+                                this.dispatchEvent(this.event);
+                                this.template.updateColumnWidth(this);
+                            }
+                            if ((prop == "colAmount" || prop == "flexWidth") && (!this.width || isNaN(this.width))) {
                                 this.width = this.setColumnFlexWidth();
                                 this.template.updateColumnWidth(this);
                             }
@@ -3929,8 +3972,8 @@ $__System.register('6d', ['11', '12', '13', '14', '15', '16', '19', '41', '60', 
                 }, {
                     key: 'setWidth',
                     value: function setWidth() {
-                        if (!this.width) return null;
-                        return this.width + "%";
+                        if (!this.width || isNaN(this.width)) return this.width;
+                        return this.width;
                     }
                 }, {
                     key: 'setColumnFlexWidth',
@@ -3938,6 +3981,13 @@ $__System.register('6d', ['11', '12', '13', '14', '15', '16', '19', '41', '60', 
                         if (!this.flexWidth || !this.colAmount) return;
                         return this.flexWidth / this.colAmount + "%";
                     }
+                }, {
+                    key: 'event',
+                    decorators: [property],
+                    initializer: function initializer() {
+                        return new CustomEvent("columnWidth", { bubbles: true });
+                    },
+                    enumerable: true
                 }, {
                     key: 'index',
                     decorators: [property],

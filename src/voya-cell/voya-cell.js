@@ -10,6 +10,9 @@ export class VoyaCell extends (HTMLElement || Element){
     cellName
 
     @property
+    cellViewName
+
+    @property
     width
 
     @property

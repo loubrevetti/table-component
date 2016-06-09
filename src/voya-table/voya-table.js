@@ -10,11 +10,11 @@ class VoyaTable extends (HTMLElement || Element){
 			this.columns = Array.slice(this.querySelectorAll("voya-column"));
 			this.render();
 			this.addEventListener("dataAssembled",this.buildColsAndRows.bind(this))
+			this.addEventListener("columnWidth",this.updateWidths.bind(this))
 			this.buildServices();
 			this.assembleData();
 			if(this.mobileWidth){
-				this.convertToMobile();
-				this.windowListener();
+				this.updateMobileView()
 			}
 		}
 		@property
@@ -72,17 +72,19 @@ class VoyaTable extends (HTMLElement || Element){
 		}
 		updateTableView(prop){
 			if(prop==="mobileWidth"){
-				this.convertToMobile();
-				this.windowListener();
+				this.updateMobileView()
 				return;
 			}
 			this.rows.forEach(function(row){row[prop]=this[prop];}.bind(this))
-			this.columns.forEach(function(col){
-				col[prop]=this[prop];
-				if(prop==="sort" || prop==="filter"){
-					this.setColumnListeners(col);
-				}
-			}.bind(this))
+			this.columns.forEach(function(col){col[prop]=this[prop];(prop==="sort" || prop==="filter")? this.setColumnListeners(col):null}.bind(this))
+		}
+		updateMobileView(){
+			this.convertToMobile();
+			this.windowListener();
+		}
+		updateWidths(){
+			this.updateColumns();
+			this.rows.map((row)=>row.columns=this.columns);
 		}
 		propertyChangedCallback(prop, oldValue, newValue) {
 			if(oldValue === newValue) return;
@@ -90,7 +92,6 @@ class VoyaTable extends (HTMLElement || Element){
 				this.updateTableView(prop);
 			}
 		}
-		// assembly of child classes
 		//service assembelies and behaviors
 		buildServices() {
 			if (!this.apiUrl) return;
@@ -120,7 +121,7 @@ class VoyaTable extends (HTMLElement || Element){
 		}
 		filterData(e){}
 		//end service assembelies and behaviors
-		// end assembly of child classes
+		// assembly of child classes
 		buildColsAndRows(e){
 			this.updateColumns();
 			this.rows = this.data.map(function(rec,idx){
@@ -135,8 +136,8 @@ class VoyaTable extends (HTMLElement || Element){
 			this.template.addRows(this);
 		}
 		updateColumns(){
-			let colAmount = this.columns.map((col)=>(!col.width)? col:null).filter((col)=>(col)?col:null).length, flexWidth = 100;
-			this.columns.map((col)=>(col.width)? parseInt(col.width) : null).filter((width)=>(width)? parseInt(width):null).forEach(function(width){
+			let colAmount = this.columns.map((col)=>(!col.width || isNaN(col.width))? col:null).filter((col)=>(col)?col:null).length, flexWidth = 100;
+			this.columns.map((col)=>(!isNaN(col.width))? parseInt(col.width) : null).filter((width)=>(width)? parseInt(width):null).forEach(function(width){
 				flexWidth = flexWidth - width;
 			});
 			this.columns = this.columns.map(function(col,idx){

@@ -1,6 +1,6 @@
 export function VoyaCellTemplate() {
     function render(el){
-        el.style.width = el.width;
+        el.style.width = (isNaN(el.width))? el.width : el.width+"%";;
         let content = (el.cellTemplate)? el.cellTemplate : el.cellValue;
         let method = (!el.mobile)? "add" : "remove";
         el.classList[method]("non-mobile");

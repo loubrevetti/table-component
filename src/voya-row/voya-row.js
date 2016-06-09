@@ -51,10 +51,21 @@ export class VoyaRow extends (HTMLElement || Element){
         if(prop ==="rowData") {
             this.buildCells();
         }
+        if(prop==="columns"){
+            this.updateCellView();
+        }
+    }
+    updateCellView(){
+        this.cells = this.cells.map(function(cell) {
+            let col = this.columns.map((col)=>(col.name === cell.cellViewName)? col:null).filter((col)=>(col)?col:null)[0];
+            cell.width = col.width;
+            return cell;
+        }.bind(this));
     }
     buildCells(){
         this.cells = this.columns.map(function(col){
             let cell = document.createElement("voya-cell");
+            cell.cellViewName = col.name
             cell.cellName = col.name;
             cell.mobile = col.mobile
             cell.label = (col.mobileLabel)? col.name : null;

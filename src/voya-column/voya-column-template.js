@@ -25,7 +25,7 @@ export function VoyaColumnTemplate() {
     }
     function updateColumnWidth(el){
         if(!el.width) return;
-        el.style.width=el.width;
+        el.style.width=(isNaN(el.width))? el.width : el.width+"%";
     }
     return {
         render:render,

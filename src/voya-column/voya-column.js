@@ -14,6 +14,10 @@ export class VoyaColumn extends (HTMLElement || Element){
         this.render();
         this.assembleFeatures()
     }
+
+    @property
+    event =  new CustomEvent("columnWidth",{bubbles:true});
+
     @property
     index
 
@@ -72,7 +76,13 @@ export class VoyaColumn extends (HTMLElement || Element){
            if (prop == "theme" || prop == "borders") {
                this.template.updateTheme(this)
            }
-           if((prop == "colAmount" || prop == "flexWidth") && !this.width){
+           if(prop==="width"){
+               this.width = this.setWidth();
+               if(isNaN(this.width))return;
+               this.dispatchEvent(this.event);
+               this.template.updateColumnWidth(this);
+           }
+           if((prop == "colAmount" || prop == "flexWidth") && (!this.width || isNaN(this.width))){
                this.width = this.setColumnFlexWidth();
                this.template.updateColumnWidth(this)
            }
@@ -91,8 +101,8 @@ export class VoyaColumn extends (HTMLElement || Element){
         _privateProperties.get(this).sort.removeActiveSort(e)
     }
     setWidth(){
-        if(!this.width) return null;
-        return this.width+"%";
+        if(!this.width || isNaN(this.width)) return this.width;
+        return this.width;
     }
     setColumnFlexWidth(){
         if(!this.flexWidth || !this.colAmount) return;
