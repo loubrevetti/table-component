@@ -1,7 +1,6 @@
 import {VoyaTableTemplate} from './voya-table-template';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {VoyaTableServices} from './voya-table-services';
-const DATA_EVENT = new CustomEvent('dataAssembled');
 class VoyaTable extends (HTMLElement || Element){
 		createdCallback(){
 			this.tableWidth = 100;
@@ -9,10 +8,13 @@ class VoyaTable extends (HTMLElement || Element){
 			this.services = VoyaTableServices();
 			this.columns = Array.slice(this.querySelectorAll("voya-column"));
 			this.render();
-			this.addEventListener("dataAssembled",this.buildColsAndRows.bind(this))
 			this.addEventListener("columnWidth",this.updateWidths.bind(this))
-			this.buildServices();
-			this.assembleData();
+			this.services.buildService(this);
+			this.services.loadData(this).then(function(data){
+				this.originalData = JSON.parse(JSON.stringify(data));
+				this.data = data;
+				this.buildColsAndRows()
+			}.bind(this));
 			if(this.mobileWidth){
 				this.updateMobileView()
 			}
@@ -62,10 +64,18 @@ class VoyaTable extends (HTMLElement || Element){
 		@property({type:'string'})
 		@nullable
 		apiUrl = null
-		
+
 		@property
 		@nullable
-		apiParams = null
+		fetchOptions;
+
+		@property
+		@nullable
+		fetchPayload;
+
+		@property
+		@nullable
+		bindingProperty;
 
 		render(){
 			this.innerHTML=this.template.render(this);
@@ -91,20 +101,6 @@ class VoyaTable extends (HTMLElement || Element){
 			if((prop=="theme" || prop=="borders" || prop=="rowAlternating" || prop=="sort" || prop=="mobileWidth")){
 				this.updateTableView(prop);
 			}
-		}
-		//service assembelies and behaviors
-		buildServices() {
-			if (!this.apiUrl) return;
-			let payload = (this.apiParams)? JSON.parse(this.apiParams) : null;
-			let apiParams={url:this.apiUrl,payload:payload};
-			this.services.api(apiParams);
-		}
-		assembleData(){
-			this.services.loadData().then(function(response){
-				this.originalData = JSON.parse(JSON.stringify(response.records));
-				this.data = response.records;
-				this.dispatchEvent(DATA_EVENT);
-			}.bind(this));
 		}
 		resetData(){
 			return JSON.parse(JSON.stringify(this.originalData));
