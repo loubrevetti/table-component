@@ -45,9 +45,8 @@ class VoyaTable extends (HTMLElement || Element){
 	@nullable
 	template
 
-	@property
-	@nullable
-	rowAlternating
+	@property({type:'boolean'})
+	rowAlternating=false
 
 	@property({type:'boolean'})
 	@nullable
