@@ -55,7 +55,7 @@
 </ul>
 <!-- inline html for implementation to serve for demo purposes. -->
 <div style="z-index: 1; position: relative; max-width:965px; min-width:500px; margin:0px auto; padding:50px 0px;">
-    <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records">
+    <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records" row-alternating="true">
         <voya-column mobile cell-template="<a target='_blank' href='${link.href}'>${^value}</a>">address</voya-column>
         <voya-column cell-template="<span class='cityStyle'>${^city}</span>">city</voya-column>
         <voya-column>state</voya-column>

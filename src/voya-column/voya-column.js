@@ -10,6 +10,7 @@ export class VoyaColumn extends (HTMLElement || Element){
         _privateProperties.set(this,_features);
         this.template = VoyaColumnTemplate();
         this.name = (!this.name)? this.innerHTML : this.name;
+        this.colLabel = this.innerHTML;
         this.width = (this.width) ? this.setWidth() : null;
         this.render();
         this.assembleFeatures()

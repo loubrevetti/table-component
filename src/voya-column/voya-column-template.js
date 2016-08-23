@@ -1,6 +1,6 @@
 export function VoyaColumnTemplate() {
     function render(data){
-        return `<div class="voya-col ${data.name}"><div class="label">${data.name}</div> <div class="voya-col-actions"></div></div>`
+        return `<div class="voya-col ${data.colLabel}"><div class="label">${data.colLabel}</div> <div class="voya-col-actions"></div></div>`
     }
     function addButton(el,button){
         el.querySelector(".voya-col-actions").appendChild(button);

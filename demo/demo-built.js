@@ -988,15 +988,11 @@ $__System.register('11', ['7', '9', '10', '12', '13', '14', '15', '16', '17'], f
 						this.columns = _Array$slice(this.querySelectorAll("voya-column"));
 						this.render();
 						this.addEventListener("columnWidth", this.updateWidths.bind(this));
-						this.services.buildService(this);
-						this.services.loadData(this).then((function (data) {
-							this.originalData = JSON.parse(JSON.stringify(data));
-							this.data = data;
-							this.buildColsAndRows();
-						}).bind(this));
 						if (this.mobileWidth) {
 							this.updateMobileView();
 						}
+						if (!this.apiUrl) return;
+						this.fetchData();
 					}
 				}, {
 					key: 'render',
@@ -1037,9 +1033,20 @@ $__System.register('11', ['7', '9', '10', '12', '13', '14', '15', '16', '17'], f
 					key: 'propertyChangedCallback',
 					value: function propertyChangedCallback(prop, oldValue, newValue) {
 						if (oldValue === newValue) return;
+						if (prop === "apiUrl") this.fetchData();
 						if (prop == "theme" || prop == "borders" || prop == "rowAlternating" || prop == "sort" || prop == "mobileWidth") {
 							this.updateTableView(prop);
 						}
+					}
+				}, {
+					key: 'fetchData',
+					value: function fetchData() {
+						this.services.buildService(this);
+						this.services.loadData(this).then((function (data) {
+							this.originalData = JSON.parse(JSON.stringify(data));
+							this.data = data;
+							this.buildColsAndRows();
+						}).bind(this));
 					}
 				}, {
 					key: 'resetData',
@@ -1077,6 +1084,7 @@ $__System.register('11', ['7', '9', '10', '12', '13', '14', '15', '16', '17'], f
 							row.borders = this.borders;
 							row.theme = this.theme;
 							row.idx = idx;
+							row.rowAlternating = this.rowAlternating;
 							return row;
 						}).bind(this));
 						this.template.addRows(this);
@@ -2586,7 +2594,7 @@ $__System.register("41", [], function (_export) {
 
     function VoyaColumnTemplate() {
         function render(data) {
-            return "<div class=\"voya-col " + data.name + "\"><div class=\"label\">" + data.name + "</div> <div class=\"voya-col-actions\"></div></div>";
+            return "<div class=\"voya-col " + data.colLabel + "\"><div class=\"label\">" + data.colLabel + "</div> <div class=\"voya-col-actions\"></div></div>";
         }
         function addButton(el, button) {
             el.querySelector(".voya-col-actions").appendChild(button);
@@ -3955,6 +3963,7 @@ $__System.register('6d', ['6', '12', '13', '14', '15', '16', '17', '41', '60', '
                         _privateProperties.set(this, _features);
                         this.template = VoyaColumnTemplate();
                         this.name = !this.name ? this.innerHTML : this.name;
+                        this.colLabel = this.innerHTML;
                         this.width = this.width ? this.setWidth() : null;
                         this.render();
                         this.assembleFeatures();
