@@ -992,7 +992,6 @@ $__System.register('11', ['7', '9', '10', '12', '13', '14', '15', '16', '17'], f
 						this.services.loadData(this).then((function (data) {
 							this.originalData = JSON.parse(JSON.stringify(data));
 							this.data = data;
-							console.dir(this);
 							this.buildColsAndRows();
 						}).bind(this));
 						if (this.mobileWidth) {
