@@ -67,10 +67,11 @@ export class VoyaRow extends (HTMLElement || Element){
             let cell = document.createElement("voya-cell");
             cell.cellViewName = col.name
             cell.cellName = col.name;
-            cell.mobile = col.mobile
-            cell.label = (col.mobileLabel)? col.name : null;
+            cell.mobile = col.mobile;
+            cell.label = (col.mobileLabel)? col.colLabel : null;
             cell.cellValue = (col.name) ? this.rowData[cell.cellName] : this.rowData;
             cell.cellTemplate = (col.cellTemplate)? col.cellTemplate : null;
+            cell.dataFormat = (col.dataFormat)? col.dataFormat : null;
             if(cell.cellTemplate) cell.renderCellTemplate();
             cell.width = col.width;
             return cell;
