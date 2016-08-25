@@ -48,12 +48,11 @@ export class VoyaCell extends (HTMLElement || Element){
     }
 
     mapCellData(){
-        this.cellTemplate.split('$').slice(1).map((dataProperty)=>dataProperty.substring(1,dataProperty.indexOf("}"))).forEach(function(property){
+        this.cellTemplate.split('#').slice(1).map((dataProperty)=>dataProperty.substring(2,dataProperty.indexOf("}}"))).forEach(function(property){
             let primaryValue = (property.indexOf('^')!=-1)? property.substring(1):null;
             if(primaryValue) {this.cellName = (this.cellName === primaryValue) ? primaryValue+"^" : primaryValue;}
             this.cellData[(primaryValue)? primaryValue : property]=(primaryValue)? this.cellName : property;
         }.bind(this))
-
         for(var property in this.cellData){
             this.cellData[property]=(this.cellData[property].charAt(this.cellData[property].length-1)!="^")? getNestedData(property,this.cellValue) : this.cellValue;
         }
@@ -72,7 +71,7 @@ export class VoyaCell extends (HTMLElement || Element){
     }
     repaintCellTemplate(){
         Object.keys(this.cellData).forEach(function(item){
-            let replace = new RegExp("\(\\$\\{(\\^?)"+item+"\\}\)");
+            let replace = new RegExp("\(\\#\\{{(\\^?)"+item+"\\}}\)");
             this.cellTemplate = this.cellTemplate.replace(replace,this.cellData[item]);
         }.bind(this));
     }

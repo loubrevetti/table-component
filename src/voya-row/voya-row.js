@@ -69,13 +69,13 @@ export class VoyaRow extends (HTMLElement || Element){
             cell.cellName = col.name;
             cell.mobile = col.mobile
             cell.label = (col.mobileLabel)? col.name : null;
-            cell.cellValue = this.rowData[cell.cellName];
+            cell.cellValue = (col.name) ? this.rowData[cell.cellName] : this.rowData;
             cell.cellTemplate = (col.cellTemplate)? col.cellTemplate : null;
             if(cell.cellTemplate) cell.renderCellTemplate();
             cell.width = col.width;
             return cell;
         }.bind(this));
-       this.template.addCells(this)
+        this.template.addCells(this)
     }
 }
 document.registerElement('voya-row', VoyaRow);

@@ -9,7 +9,6 @@ export class VoyaColumn extends (HTMLElement || Element){
         _features={sort:null, filter:null};
         _privateProperties.set(this,_features);
         this.template = VoyaColumnTemplate();
-        this.name = (!this.name)? this.innerHTML : this.name;
         this.colLabel = this.innerHTML;
         this.width = (this.width) ? this.setWidth() : null;
         this.render();
@@ -70,24 +69,24 @@ export class VoyaColumn extends (HTMLElement || Element){
         if(this.width) this.template.updateColumnWidth(this);
     }
     propertyChangedCallback(prop, oldValue, newValue) {
-       if(oldValue !== newValue) {
-           if (prop == 'sort' || prop == 'filter') {
-               this.assembleFeatures()
-           }
-           if (prop == "theme" || prop == "borders") {
-               this.template.updateTheme(this)
-           }
-           if(prop==="width"){
-               this.width = this.setWidth();
-               if(isNaN(this.width))return;
-               this.dispatchEvent(this.event);
-               this.template.updateColumnWidth(this);
-           }
-           if((prop == "colAmount" || prop == "flexWidth") && (!this.width || isNaN(this.width))){
-               this.width = this.setColumnFlexWidth();
-               this.template.updateColumnWidth(this)
-           }
-       }
+        if(oldValue !== newValue) {
+            if (prop == 'sort') {
+                this.assembleFeatures()
+            }
+            if (prop == "theme" || prop == "borders") {
+                this.template.updateTheme(this)
+            }
+            if(prop==="width"){
+                this.width = this.setWidth();
+                if(isNaN(this.width))return;
+                this.dispatchEvent(this.event);
+                this.template.updateColumnWidth(this);
+            }
+            if((prop == "colAmount" || prop == "flexWidth") && (!this.width || isNaN(this.width))){
+                this.width = this.setColumnFlexWidth();
+                this.template.updateColumnWidth(this)
+            }
+        }
     }
     assembleFeatures(){
         Object.keys(_features).forEach(function(prop){this.buildFeature(prop)}.bind(this))
