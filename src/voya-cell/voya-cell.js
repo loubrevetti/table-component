@@ -1,6 +1,7 @@
 import {VoyaCellTemplate} from './voya-cell-template';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {getNestedData} from '../utilities/data-manipulation';
+import {format} from '../utilities/data-formats';
 export class VoyaCell extends (HTMLElement || Element){
     createdCallback(){
         this.template = VoyaCellTemplate()
@@ -28,6 +29,9 @@ export class VoyaCell extends (HTMLElement || Element){
 
     @property
     cellTemplate
+
+    @property
+    dataFormat
 
     @property
     @nullable
@@ -72,6 +76,9 @@ export class VoyaCell extends (HTMLElement || Element){
     repaintCellTemplate(){
         Object.keys(this.cellData).forEach(function(item){
             let replace = new RegExp("\(\\#\\{{(\\^?)"+item+"\\}}\)");
+            if(this.dataFormat){
+                this.cellData[item] = format.getFormat()[this.dataFormat](this.cellData[item]);
+            }
             this.cellTemplate = this.cellTemplate.replace(replace,this.cellData[item]);
         }.bind(this));
     }

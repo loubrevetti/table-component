@@ -51,6 +51,9 @@ export class VoyaColumn extends (HTMLElement || Element){
     @nullable
     cellTemplate
 
+    @property
+    dataFormat
+
     @property({type:'boolean'})
     mobile
 
