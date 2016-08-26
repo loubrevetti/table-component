@@ -3,6 +3,7 @@ export function getNestedData(searchString,object){
         if(typeof(object[property])==='object' && idx < searchString.split('.').length-1){
             return getNestedData(searchString.split('.').slice(idx+1).join("."),object[property])
         }
+        object[property]=(object[property]==0)? ""+object[property] : object[property];
         if(typeof(object[property])!=='object' && object[property]){
             return object[property]
         }
