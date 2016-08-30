@@ -35,8 +35,6 @@ export class VoyaRow extends (HTMLElement || Element){
     @property
     @nullable
     cells
-
-
     render(){
         this.innerHTML=this.template.render(this)
     }

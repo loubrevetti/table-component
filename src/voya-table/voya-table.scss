@@ -17,6 +17,10 @@ voya-table{
     content:"";
     clear: both;
   }
+  .voya-table-rows-wrapper{
+    position:relative;
+    overflow-y: auto;
+  }
   &.mobile{
     .deep-ui-voya-table {
       background: transparent;

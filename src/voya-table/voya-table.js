@@ -72,8 +72,13 @@ class VoyaTable extends (HTMLElement || Element){
 	@nullable
 	bindingProperty;
 
+	@property
+	@nullable
+	scrollHeight;
+
 	render(){
 		this.innerHTML=this.template.render(this);
+		this.template.updateTemplateView(this)
 	}
 	updateTableView(prop){
 		if(prop==="mobileWidth"){
@@ -94,6 +99,7 @@ class VoyaTable extends (HTMLElement || Element){
 	propertyChangedCallback(prop, oldValue, newValue) {
 		if(oldValue === newValue) return;
 		if(prop === "apiUrl") this.fetchData();
+		if(prop === "scrollHeight") this.template.updateTemplateView(this);
 		if((prop=="theme" || prop=="borders" || prop=="rowAlternating" || prop=="sort" || prop=="mobileWidth")){
 			this.updateTableView(prop);
 		}

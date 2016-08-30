@@ -20,10 +20,14 @@ export function VoyaTableTemplate() {
 			el.querySelector(".voya-table-rows-wrapper").appendChild(row)
 		})
 	}
+	function updateTemplateView(el){
+		el.querySelector(".voya-table-rows-wrapper").style.maxHeight = el.scrollHeight+"px";
+	}
 
 	return {
 		render:render,
 		addColumns:addColumns,
-		addRows:addRows
+		addRows:addRows,
+		updateTemplateView:updateTemplateView
 	}
 }
