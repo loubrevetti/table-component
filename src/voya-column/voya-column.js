@@ -1,10 +1,11 @@
 import {VoyaColumnTemplate} from './voya-column-template';
+import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {Sort} from '../utilities/sort';
 import {Filter} from '../utilities/filter';
 let _features;
 let _privateProperties = new WeakMap();
-export class VoyaColumn extends (HTMLElement || Element){
+export class VoyaColumn extends NativeHTMLElement {
     createdCallback(){
         _features={sort:null, filter:null};
         _privateProperties.set(this,_features);

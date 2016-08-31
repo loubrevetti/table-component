@@ -1,8 +1,9 @@
 import {VoyaCellTemplate} from './voya-cell-template';
+import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {getNestedData} from '../utilities/data-manipulation';
 import {format} from '../utilities/data-formats';
-export class VoyaCell extends (HTMLElement || Element){
+export class VoyaCell extends NativeHTMLElement {
     createdCallback(){
         this.template = VoyaCellTemplate()
         this.cellData={}

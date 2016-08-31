@@ -23,7 +23,7 @@ System.config({
     "core-js": "npm:core-js@1.2.6",
     "dom-delegate": "npm:dom-delegate@2.0.3",
     "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.1",
-    "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.3.0",
+    "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.4.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
@@ -82,9 +82,11 @@ System.config({
       "compass-mixins": "github:Igosuki/compass-mixins@1.0.2",
       "font-awesome": "npm:font-awesome@4.4.0"
     },
-    "voya-github:Voya/deep-ui-voya-component-utils@3.3.0": {
+    "voya-github:Voya/deep-ui-voya-component-utils@3.4.1": {
       "camelcase": "npm:camelcase@2.1.1",
-      "decamelize": "npm:decamelize@1.2.0"
+      "custom-event-polyfill": "npm:custom-event-polyfill@0.2.2",
+      "decamelize": "npm:decamelize@1.2.0",
+      "focusin": "npm:focusin@2.0.0"
     }
   }
 });

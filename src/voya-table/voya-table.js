@@ -1,7 +1,8 @@
 import {VoyaTableTemplate} from './voya-table-template';
+import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {VoyaTableServices} from './voya-table-services';
-class VoyaTable extends (HTMLElement || Element){
+class VoyaTable extends NativeHTMLElement {
 	createdCallback(){
 		this.tableWidth = 100;
 		this.template = VoyaTableTemplate();

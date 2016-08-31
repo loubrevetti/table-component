@@ -1,6 +1,7 @@
 import {VoyaRowTemplate} from './voya-row-template';
+import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
-export class VoyaRow extends (HTMLElement || Element){
+export class VoyaRow extends NativeHTMLElement {
     createdCallback(){
         this.template = VoyaRowTemplate();
         this.cells = [];
