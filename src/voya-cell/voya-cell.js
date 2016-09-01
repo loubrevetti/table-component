@@ -59,6 +59,7 @@ export class VoyaCell extends (HTMLElement || Element){
         }.bind(this))
         for(var property in this.cellData){
             this.cellData[property]=(this.cellData[property].charAt(this.cellData[property].length-1)!="^")? getNestedData(property,this.cellValue) : this.cellValue;
+            this.cellData[property]=(this.cellData[property] == null)? "": this.cellData[property];
         }
     }
     parseCellData(property,data){
@@ -76,8 +77,9 @@ export class VoyaCell extends (HTMLElement || Element){
     repaintCellTemplate(){
         Object.keys(this.cellData).forEach(function(item){
             let replace = new RegExp("\(\\#\\{{(\\^?)"+item+"\\}}\)");
-            if(this.dataFormat){
-                this.cellData[item] = format.getFormat()[this.dataFormat](this.cellData[item]);
+            if(this.dataFormat && this.cellData[item]!==""){
+                let formatting = (this.dataFormat.indexOf("{") !=-1)? (function(){return Object.keys(JSON.parse(this.dataFormat)).map((format)=>(JSON.parse(this.dataFormat)[item]) ? format : null)[0]}.bind(this))(): this.dataFormat;
+                if(formatting) this.cellData[item] = format.getFormat()[formatting](this.cellData[item]);
             }
             this.cellTemplate = this.cellTemplate.replace(replace,this.cellData[item]);
         }.bind(this));
