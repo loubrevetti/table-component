@@ -84,3 +84,5 @@ app.css
 app.js
 app.js.map
 /.project
+demo-built.js
+demo-built.js.map
