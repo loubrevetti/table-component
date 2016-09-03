@@ -79,7 +79,7 @@ export class VoyaCell extends NativeHTMLElement {
         Object.keys(this.cellData).forEach(function(item){
             let replace = new RegExp("\(\\#\\{{(\\^?)"+item+"\\}}\)");
             if(this.dataFormat && this.cellData[item]!==""){
-                let formatting = (this.dataFormat.indexOf("{") !=-1)? (function(){return Object.keys(JSON.parse(this.dataFormat)).map((format)=>(JSON.parse(this.dataFormat)[item]) ? format : null)[0]}.bind(this))(): this.dataFormat;
+                let formatting = (this.dataFormat.indexOf("{") !=-1)? (function(){return Object.keys(JSON.parse(this.dataFormat)).map((format)=>(JSON.parse(this.dataFormat)[format]=== item) ? format : null)[0]}.bind(this))(): this.dataFormat;
                 if(formatting) this.cellData[item] = format.getFormat()[formatting](this.cellData[item]);
             }
             this.cellTemplate = this.cellTemplate.replace(replace,this.cellData[item]);
