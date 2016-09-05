@@ -10,26 +10,20 @@ export function VoyaRowTemplate() {
     }
     function updateRowTheme(el){
         if(el.rowAlternating) {
-            el.classList.forEach(function(CSSclass){
-                if(CSSclass.indexOf("odd")!=-1 || CSSclass.indexOf("even")!=-1){
-                    el.classList.remove(CSSclass);
-                }
+            ["odd", "even"].forEach(CSSclass => {
+                el.classList.remove(CSSclass);
             })
             el.classList.add(el.rowAlternating)
         }
         if(el.borders){
-            el.classList.forEach(function(CSSclass){
-                if(CSSclass.indexOf("vertical")!=-1 || CSSclass.indexOf("horizontal")!=-1 || CSSclass.indexOf("none")!=-1){
-                    el.classList.remove(CSSclass);
-                }
+            ["vertical", "horizontal", "none"].forEach(CSSclass => {
+                el.classList.remove(CSSclass);
             })
             el.classList.add(el.borders)
         }
         if(el.theme){
-            el.classList.forEach(function(CSSclass){
-                if(CSSclass.indexOf("orange")!=-1 || CSSclass.indexOf("white")!=-1){
-                    el.classList.remove(CSSclass);
-                }
+            ["orange", "white"].forEach(CSSclass => {
+                el.classList.remove(CSSclass);
             })
             el.classList.add(el.theme)
         }
