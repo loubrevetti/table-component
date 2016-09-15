@@ -1,5 +1,6 @@
 import '../src/voya-table';
 import delegate from 'dom-delegate';
+import 'whatwg-fetch';
 let eventMethod=(addEventListener) ? {addEventListener:"DOMContentLoaded"} : {attachEvent:"onload"};
 window[Object.keys(eventMethod)[0]](eventMethod[Object.keys(eventMethod)[0]],appLoaded)
 

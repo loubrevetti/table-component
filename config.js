@@ -24,6 +24,7 @@ System.config({
     "dom-delegate": "npm:dom-delegate@2.0.3",
     "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.1",
     "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.4.1",
+    "whatwg-fetch": "npm:whatwg-fetch@1.0.0",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },

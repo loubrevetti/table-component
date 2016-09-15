@@ -68,7 +68,7 @@ export class VoyaColumn extends NativeHTMLElement {
     filter
 
     render(){
-        this.innerHTML=this.template.render(this)
+        this.innerHTML=this.template.render(this);
         if(this.theme || this.borders) this.template.updateTheme(this);
         if(this.width) this.template.updateColumnWidth(this);
     }
