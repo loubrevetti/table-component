@@ -1,13 +1,17 @@
 export function VoyaTableTemplate() {
-	function render(data){
-		return buildWrapper(data);
+	function render(el){
+		return createTableWrapper(buildWrapper(el));;
 	}
-	function buildWrapper(data){
-		return `<div class="deep-ui-voya-table">
-					<div class="voya-table-column-wrapper">
-					</div>
-					<div class="voya-table-rows-wrapper">
-					</div>
+	function createTableWrapper(tableContent) {
+		let tempDiv = document.createElement('div');
+		tempDiv.className = 'deep-ui-voya-table';
+		tempDiv.innerHTML = tableContent;
+		return tempDiv;
+	}
+	function buildWrapper(el){
+		return `<div class="voya-table-column-wrapper">
+				</div>
+				<div class="voya-table-rows-wrapper">
 				</div>`
 	}
 	function addColumns(el){
@@ -23,7 +27,6 @@ export function VoyaTableTemplate() {
 	function updateTemplateView(el){
 		el.querySelector(".voya-table-rows-wrapper").style.maxHeight = el.scrollHeight+"px";
 	}
-
 	return {
 		render:render,
 		addColumns:addColumns,

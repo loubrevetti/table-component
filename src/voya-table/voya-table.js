@@ -7,7 +7,7 @@ class VoyaTable extends NativeHTMLElement {
 		this.tableWidth = 100;
 		this.template = VoyaTableTemplate();
 		this.services = VoyaTableServices();
-		this.columns = Array.slice(this.querySelectorAll("voya-column"));
+		this.columns = Array.from(this.querySelectorAll("voya-column"));
 		this.render();
 		this.addEventListener("columnWidth",this.updateWidths.bind(this))
 		if(this.mobileWidth){
@@ -87,15 +87,15 @@ class VoyaTable extends NativeHTMLElement {
 	scrollHeight;
 
 	render(){
-		this.innerHTML=this.template.render(this);
-		this.template.updateTemplateView(this)
+		this.appendChild(this.template.render(this));
+		this.template.updateTemplateView(this);
 	}
 	updateTableView(prop){
 		if(prop==="mobileWidth"){
 			this.updateMobileView()
 			return;
 		}
-		this.rows.forEach(function(row){row[prop]=this[prop];}.bind(this))
+		this.rows.forEach(function(row){row[prop]=this[prop];}.bind(this));
 		this.columns.forEach(function(col){col[prop]=this[prop];(prop==="sort" || prop==="filter")? this.setColumnListeners(col):null}.bind(this))
 	}
 	updateMobileView(){
@@ -112,7 +112,7 @@ class VoyaTable extends NativeHTMLElement {
 		this.services.loadData(this).then(function(data){
 			this.originalData = JSON.parse(JSON.stringify(data));
 			this.data = data;
-			this.buildColsAndRows()
+			this.buildColsAndRows();
 		}.bind(this));
 	}
 	resetData(){
