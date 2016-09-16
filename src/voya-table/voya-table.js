@@ -17,7 +17,7 @@ class VoyaTable extends NativeHTMLElement {
 		this.fetchData();
 	}
 	propertyChangedCallback(prop, oldValue, newValue) {
-		if(oldValue === newValue) return;
+		if(oldValue === newValue && !newValue) return;
 		if(prop === "apiUrl") this.fetchData();
 		if(prop === "scrollHeight") this.template.updateTemplateView(this);
 		if((prop=="theme" || prop=="borders" || prop=="rowAlternating" || prop=="sort" || prop=="mobileWidth")){

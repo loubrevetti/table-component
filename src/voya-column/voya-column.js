@@ -73,7 +73,7 @@ export class VoyaColumn extends NativeHTMLElement {
         if(this.width) this.template.updateColumnWidth(this);
     }
     propertyChangedCallback(prop, oldValue, newValue) {
-        if(oldValue !== newValue) {
+        if(oldValue === newValue && !newValue) return;
             if (prop == 'sort') {
                 this.assembleFeatures()
             }
@@ -90,7 +90,6 @@ export class VoyaColumn extends NativeHTMLElement {
                 this.width = this.setColumnFlexWidth();
                 this.template.updateColumnWidth(this)
             }
-        }
     }
     assembleFeatures(){
         Object.keys(_features).forEach(function(prop){this.buildFeature(prop)}.bind(this))
