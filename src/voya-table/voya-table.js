@@ -16,6 +16,15 @@ class VoyaTable extends NativeHTMLElement {
 		if(!this.apiUrl) return;
 		this.fetchData();
 	}
+	propertyChangedCallback(prop, oldValue, newValue) {
+		console.log(oldValue);
+		console.log(newValue);
+		if(prop === "apiUrl") this.fetchData();
+		if(prop === "scrollHeight") this.template.updateTemplateView(this);
+		if((prop=="theme" || prop=="borders" || prop=="rowAlternating" || prop=="sort" || prop=="mobileWidth")){
+			this.updateTableView(prop);
+		}
+	}
 	@property
 	@nullable
 	mobileWidth
@@ -97,15 +106,7 @@ class VoyaTable extends NativeHTMLElement {
 		this.updateColumns();
 		this.rows.map((row)=>row.columns=this.columns);
 	}
-	propertyChangedCallback(prop, oldValue, newValue) {
-		if(oldValue === newValue) return;
 
-		if(prop === "apiUrl") this.fetchData();
-		if(prop === "scrollHeight") this.template.updateTemplateView(this);
-		if((prop=="theme" || prop=="borders" || prop=="rowAlternating" || prop=="sort" || prop=="mobileWidth")){
-			this.updateTableView(prop);
-		}
-	}
 	fetchData(){
 		this.services.buildService(this);
 		this.services.loadData(this).then(function(data){

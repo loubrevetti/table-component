@@ -3,6 +3,7 @@ export function VoyaColumnTemplate() {
         return `<div class="voya-col ${data.colLabel}"><div class="label">${data.colLabel}</div> <div class="voya-col-actions"></div></div>`
     }
     function addButton(el,button){
+        if(el.querySelector(".voya-col-actions"))
         el.querySelector(".voya-col-actions").appendChild(button);
     }
     function updateTheme(el){
