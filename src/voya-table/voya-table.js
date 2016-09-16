@@ -9,7 +9,6 @@ class VoyaTable extends NativeHTMLElement {
 		this.services = VoyaTableServices();
 		this.columns = Array.from(this.querySelectorAll("voya-column"));
 		this.render();
-		this.addEventListener("columnWidth",this.updateWidths.bind(this))
 		if(this.mobileWidth){
 			this.updateMobileView()
 		}
@@ -112,6 +111,7 @@ class VoyaTable extends NativeHTMLElement {
 			this.originalData = JSON.parse(JSON.stringify(data));
 			this.data = data;
 			this.buildColsAndRows();
+			this.addEventListener("columnWidth",this.updateWidths.bind(this))
 		}.bind(this));
 	}
 	resetData(){
