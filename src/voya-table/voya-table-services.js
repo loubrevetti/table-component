@@ -21,7 +21,6 @@ export function VoyaTableServices(){
         })
     }
     function loadData(cmp) {
-        console.debug("cmp: ", cmp);
         return callService().then(function(response){
             return (cmp.bindingProperty.indexOf(".")!=-1) ? parseData(cmp.bindingProperty,response,0) : response[cmp.bindingProperty];
         })
