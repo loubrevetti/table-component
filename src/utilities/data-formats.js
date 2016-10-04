@@ -8,7 +8,7 @@ export class Formats{
                 return (isNaN(item) || item === '') ? item : '$ ' + parseFloat(item).toString().replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
             },
             number:function(item){
-                return (isNaN(item) || item === '') ? item :  parseFloat(item).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+                return (isNaN(item) || item === '') ? item :  parseFloat(item).toString().replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
             },
             percent:function(item){
                 return (isNaN(item) || item === '') ? item : parseFloat(item)+"%";
