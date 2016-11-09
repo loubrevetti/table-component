@@ -12,7 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 
   <script src="https://voyaretirement.intg.voyaplans.com/static/global/js/vendor/ie/respond.min.js"></script>
-  
+
   <!--[if IE 8]><script src="//cdnjs.cloudflare.com/ajax/libs/ie8/0.2.3/ie8.js"></script><![endif]-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/dom4/1.3.1/dom4.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/document-register-element/0.2.1/document-register-element.js"></script>
@@ -55,7 +55,13 @@
 </ul>
 <!-- inline html for implementation to serve for demo purposes. -->
 <div style="z-index: 1; position: relative; max-width:965px; min-width:500px; margin:0px auto; padding:50px 0px;">
-    <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records" row-alternating="true">
+    <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records" row-alternating="true"
+        mobile-width="768"
+        row-alternating
+        borders="none"
+        theme="white"
+        sort
+        scroll-height="340">
         <voya-column mobile cell-template="<a target='_blank' href='#{{address.link.href}}'>#{{^address.value}}</a>">address</voya-column>
         <voya-column cell-template="<span class='cityStyle'>#{{^city}}</span>">city</voya-column>
         <voya-column name="state">state</voya-column>
@@ -67,7 +73,7 @@
 <script src='../jspm_packages/system.js'></script><!-- required -->
 <script src='../config.js'></script><!-- required -->
 
-<!-- @if DEMO_TYPE='built' --> 
+<!-- @if DEMO_TYPE='built' -->
 <script src="demo-built.js"></script>
 <!-- @endif -->
 

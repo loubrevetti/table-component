@@ -112,7 +112,7 @@ class VoyaTable extends NativeHTMLElement {
 			this.data = data;
 			this.buildColsAndRows();
 			this.addEventListener("columnWidth",this.updateWidths.bind(this))
-		}.bind(this));
+		}.bind(this))
 	}
 	resetData(){
 		return JSON.parse(JSON.stringify(this.originalData));
@@ -143,6 +143,7 @@ class VoyaTable extends NativeHTMLElement {
 			return row
 		}.bind(this))
 		this.template.addRows(this);
+		this.template.handleTableScrolling(this);
 	}
 	updateColumns(){
 		let colAmount = this.columns.map((col)=>(!col.width || isNaN(col.width))? col:null).filter((col)=>(col)?col:null).length, flexWidth = 100;

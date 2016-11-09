@@ -27,10 +27,18 @@ export function VoyaTableTemplate() {
 	function updateTemplateView(el){
 		el.querySelector(".voya-table-rows-wrapper").style.maxHeight = el.scrollHeight+"px";
 	}
+	function contentOverflows(el) {
+        let wrapper = el.querySelector('.voya-table-rows-wrapper');
+        return wrapper.clientHeight < wrapper.scrollHeight;
+    }
+    function handleTableScrolling(el) {
+    	if (contentOverflows(el)) el.classList.add('hasOverflowContent');
+    }
 	return {
 		render:render,
 		addColumns:addColumns,
 		addRows:addRows,
-		updateTemplateView:updateTemplateView
+		updateTemplateView:updateTemplateView,
+		handleTableScrolling:handleTableScrolling
 	}
 }
