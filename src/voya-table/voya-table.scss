@@ -26,4 +26,11 @@ voya-table{
       background: transparent;
     }
   }
+  @media screen and (min-width: 769px) {
+    &.hasOverflowContent {
+      .voya-table-column-wrapper {
+        width: calc(100% - 16px);
+      }
+    }
+  }
 }
