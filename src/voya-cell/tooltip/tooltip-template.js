@@ -5,12 +5,8 @@ export function tooltipTemplate(){
     function insertVoyaTooltip(el){
         el.appendChild(el.voyaTooltip);
     }
-    function addUniqueClass(el){
-        el.querySelector('.tooltipButton').classList.add('row-'+el.rowIdx);
-    }
     return{
         render:render,
-        insertVoyaTooltip:insertVoyaTooltip,
-        addUniqueClass:addUniqueClass
+        insertVoyaTooltip:insertVoyaTooltip
     }
 }

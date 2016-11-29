@@ -26,11 +26,10 @@ export class Tooltip extends NativeHTMLElement{
         this.active = false
     }
     attachedCallback(){
-        this.template.addUniqueClass(this)
         this.voyaTooltip = document.createElement('voya-tooltip');
         this.voyaTooltip.innerHTML = this.text;
-        this.voyaTooltip.targetSelector = ".row-"+this.rowIdx;
-        this.voyaTooltip.boundingSelector = ".voya-table-rows-wrapper";
+        this.voyaTooltip.targetSelector = this.querySelector('.tooltipButton');
+        this.voyaTooltip.boundingSelector = this.parentNode.parentNode.parentNode.parentNode.parentNode;
         this.voyaTooltip.openOn = "click";
         this.voyaTooltip.position ="bottom top right left";
         this.template.insertVoyaTooltip(this);
