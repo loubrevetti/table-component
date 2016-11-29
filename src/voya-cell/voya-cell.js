@@ -3,48 +3,59 @@ import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
 import {getNestedData} from '../utilities/data-manipulation';
 import {format} from '../utilities/data-formats';
+import {Tooltip} from './tooltip/tooltip';
 export class VoyaCell extends NativeHTMLElement {
     createdCallback(){
-        this.template = VoyaCellTemplate()
+        this.template = VoyaCellTemplate();
         this.cellData={}
     }
     @property
-    cellName
+    cellName;
 
     @property
-    cellViewName
+    cellViewName;
 
     @property
-    width
-
-    @property
-    @nullable
-    template
+    width;
 
     @property
     @nullable
-    cellValue
-
-    @property
-    cellData={}
-
-    @property
-    cellTemplate
-
-    @property
-    dataFormat
+    template;
 
     @property
     @nullable
-    mobile
+    cellValue;
+
+    @property
+    cellData={};
+
+    @property
+    cellTemplate;
+
+    @property
+    dataFormat;
 
     @property
     @nullable
-    label
+    mobile;
+
+    @property
+    @nullable
+    label;
+
+    @property
+    @nullable
+    tooltip;
+
+    @property
+    rowIdx;
 
     propertyChangedCallback(prop, oldValue, newValue) {
-        if(prop !== "cellName" && prop !== "cellValue" && oldValue === newValue) return;
-        this.innerHTML=this.template.render(this)
+        if(oldValue === newValue) return;
+    }
+    attachedCallback(){
+        this.innerHTML=this.template.render(this);
+        if(this.cellValue[this.tooltip])this.addToolTip();
     }
 
     renderCellTemplate(){
@@ -74,6 +85,13 @@ export class VoyaCell extends NativeHTMLElement {
                 return;
             }
         }
+    }
+    addToolTip(){
+        let tooltipText = this.cellValue[this.tooltip];
+        this.tooltip = document.createElement('tool-tip');
+        this.tooltip.text = tooltipText;
+        this.tooltip.rowIdx = this.rowIdx;
+        this.template.insertToolTip(this);
     }
     repaintCellTemplate(){
         Object.keys(this.cellData).forEach(function(item){

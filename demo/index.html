@@ -55,7 +55,7 @@
 </ul>
 <!-- inline html for implementation to serve for demo purposes. -->
 <div style="z-index: 1; position: relative; max-width:965px; min-width:500px; margin:0px auto; padding:50px 0px;">
-    <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records" row-alternating="true"
+    <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records"
         mobile-width="768"
         row-alternating
         borders="none"
@@ -63,13 +63,14 @@
         sort
         scroll-height="340">
         <voya-column mobile cell-template="<a target='_blank' href='#{{address.link.href}}'>#{{^address.value}}</a>">address</voya-column>
-        <voya-column cell-template="<span class='cityStyle'>#{{^city}}</span>">city</voya-column>
+        <voya-column cell-template="<span class='cityStyle'>#{{^city}}</span>" tooltip='tooltip'>city</voya-column>
         <voya-column name="state">state</voya-column>
         <voya-column width="15" mobile mobile-label cell-template="<span class='cityStyle'>#{{^zipcode}}</span>">zip</voya-column>
     </voya-table>
 </div>
 <!-- DO NOT REMOVE NEEDED FOR HOOKS TO COMPILED CODE FROM GULP TASKS -->
 <!-- @if DEMO_TYPE!='built' -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script>
 <script src='../jspm_packages/system.js'></script><!-- required -->
 <script src='../config.js'></script><!-- required -->
 

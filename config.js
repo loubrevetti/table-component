@@ -22,8 +22,10 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.8.38",
     "core-js": "npm:core-js@1.2.6",
     "dom-delegate": "npm:dom-delegate@2.0.3",
+    "font-awesome": "npm:font-awesome@4.7.0",
     "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.1",
     "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.4.1",
+    "voya-tooltip": "voya-github:Voya/deep-ui-voya-tooltip@2.8.3",
     "whatwg-fetch": "npm:whatwg-fetch@1.0.0",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
@@ -63,7 +65,13 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
+    "npm:debounce@1.0.0": {
+      "date-now": "npm:date-now@1.0.1"
+    },
     "npm:font-awesome@4.4.0": {
+      "css": "github:systemjs/plugin-css@0.1.22"
+    },
+    "npm:font-awesome@4.7.0": {
       "css": "github:systemjs/plugin-css@0.1.22"
     },
     "npm:inherits@2.0.1": {
@@ -88,6 +96,11 @@ System.config({
       "custom-event-polyfill": "npm:custom-event-polyfill@0.2.2",
       "decamelize": "npm:decamelize@1.2.0",
       "focusin": "npm:focusin@2.0.0"
+    },
+    "voya-github:Voya/deep-ui-voya-tooltip@2.8.3": {
+      "debounce": "npm:debounce@1.0.0",
+      "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.1",
+      "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.4.1"
     }
   }
 });

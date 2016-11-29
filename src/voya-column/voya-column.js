@@ -67,6 +67,9 @@ export class VoyaColumn extends NativeHTMLElement {
     @property({type:'boolean'})
     filter
 
+    @property
+    tooltip;
+
     render(){
         this.innerHTML=this.template.render(this);
         if(this.theme || this.borders) this.template.updateTheme(this);

@@ -135,11 +135,11 @@ class VoyaTable extends NativeHTMLElement {
 		this.rows = this.data.map(function(rec,idx){
 			let row = document.createElement("voya-row")
 			row.columns = this.columns;
-			row.rowData = rec;
 			row.borders = this.borders;
 			row.theme = this.theme;
 			row.idx=idx;
 			row.rowAlternating = this.rowAlternating;
+			row.rowData = rec;
 			return row
 		}.bind(this))
 		this.template.addRows(this);

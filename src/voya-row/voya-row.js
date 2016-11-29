@@ -11,31 +11,31 @@ export class VoyaRow extends NativeHTMLElement {
 
     @property
     @nullable
-    template
+    template;
 
     @property
     @nullable
-    idx
+    idx;
 
     @property
     @nullable
-    borders
+    borders;
 
     @property
     @nullable
-    rowAlternating
+    rowAlternating;
 
     @property
     @nullable
-    rowData
+    rowData;
 
     @property
     @nullable
-    columns
+    columns;
 
     @property
     @nullable
-    cells
+    cells;
     render(){
         this.innerHTML=this.template.render(this)
     }
@@ -67,10 +67,12 @@ export class VoyaRow extends NativeHTMLElement {
             cell.cellViewName = col.name
             cell.cellName = col.name;
             cell.mobile = col.mobile;
+            cell.rowIdx = this.idx;
             cell.label = (col.mobileLabel)? col.colLabel : null;
             cell.cellValue = (col.name) ? this.rowData[cell.cellName] : this.rowData;
             cell.cellTemplate = (col.cellTemplate)? col.cellTemplate : null;
             cell.dataFormat = (col.dataFormat)? col.dataFormat : null;
+            cell.tooltip = (col.tooltip)?col.tooltip : null;
             if(cell.cellTemplate) cell.renderCellTemplate();
             cell.width = col.width;
             return cell;

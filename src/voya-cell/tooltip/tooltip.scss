@@ -1,0 +1,19 @@
+@import "jspm:voya-base-styles/scss/voya-base";
+@import "jspm:voya-tooltip/voya-tooltip";
+
+tool-tip{
+  .tooltipButton{
+    margin: 0px 0px 0px 5px;
+    border: 1px solid #aaa;
+    box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    color: #aaa;
+    background: #fff;
+    font-weight: normal;
+    font-size: 14px;
+    cursor:pointer;
+  }
+}

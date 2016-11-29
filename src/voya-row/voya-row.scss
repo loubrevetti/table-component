@@ -4,6 +4,7 @@ voya-row{
   border-bottom: 1px solid #aaa;
   .voya-row{
     min-height: 20px;
+    display: flex;
   }
   .voya-row:after{
     display:table;

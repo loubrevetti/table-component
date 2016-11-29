@@ -8,7 +8,12 @@ export function VoyaCellTemplate() {
         el.classList[method2]("non-label");
         return `<div class="voya-cell ${el.cellName}"><span class="label">${el.label}: </span>${content}</div>`
     }
+    function insertToolTip(el){
+        if(!el.querySelector('.voya-cell')) return;
+        el.querySelector('.voya-cell').appendChild(el.tooltip);
+    }
     return {
-        render:render
+        render:render,
+        insertToolTip:insertToolTip
    }
 }

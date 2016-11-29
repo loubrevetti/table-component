@@ -10,7 +10,8 @@
                 "value": "33 Madalyn ln"
             },
             "state": "CT",
-            "zipcode": "06489"
+            "zipcode": "06489",
+            "tooltip": "this town rocks, with great culture and awesome nightlife"
         },
         {
             "city": "Watertown",
@@ -21,7 +22,8 @@
                 "value": "59 Windy Ridge"
             },
             "state": "CT",
-            "zipcode": "06080"
+            "zipcode": "06080",
+            "tooltip": "this town rocks, with great culture and awesome nightlife 2"
         },
         {
             "city": "Watertown",
@@ -32,7 +34,8 @@
                 "value": "75 Park ln"
             },
             "state": "CT",
-            "zipcode": "06080"
+            "zipcode": "06080",
+            "tooltip": "this town rocks, with great culture and awesome nightlife 3"
         },
         {
             "city": "Wolcott",

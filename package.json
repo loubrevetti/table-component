@@ -48,8 +48,10 @@
     },
     "dependencies": {
       "dom-delegate": "npm:dom-delegate@^2.0.3",
+      "font-awesome": "npm:font-awesome@^4.6.3",
       "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@^2.4.0",
       "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@^3.3.2",
+      "voya-tooltip": "voya-github:Voya/deep-ui-voya-tooltip@^2.8.3",
       "whatwg-fetch": "npm:whatwg-fetch@^1.0.0"
     },
     "devDependencies": {
