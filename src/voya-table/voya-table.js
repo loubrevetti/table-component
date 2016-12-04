@@ -15,6 +15,12 @@ class VoyaTable extends NativeHTMLElement {
 		if(!this.apiUrl) return;
 		this.fetchData();
 	}
+	attachedCallback(){
+		this.addResizeListener();
+	}
+	detachedCallback(){
+		this.removeResizeListener();
+	}
 	propertyChangedCallback(prop, oldValue, newValue) {
 		if(oldValue === newValue && !newValue) return;
 		if(prop === "apiUrl") this.fetchData();
@@ -96,9 +102,10 @@ class VoyaTable extends NativeHTMLElement {
 		this.rows.forEach(function(row){row[prop]=this[prop];}.bind(this));
 		this.columns.forEach(function(col){col[prop]=this[prop];(prop==="sort" || prop==="filter")? this.setColumnListeners(col):null}.bind(this))
 	}
-	updateMobileView(){
-		this.convertToMobile();
-		this.windowListener();
+	updateMobileView(e){
+		let windowWidth=(e)? e.target.outerWidth : window.outerWidth;
+		let methodChoice = (windowWidth<=this.mobileWidth)? "add" : "remove";
+		this.classList[methodChoice]("mobile");
 	}
 	updateWidths(){
 		this.updateColumns();
@@ -170,16 +177,16 @@ class VoyaTable extends NativeHTMLElement {
 		if(col.sort) col.addEventListener("columnSort",function(e){this.sortData(e)}.bind(this),false);
 		if(col.filter) col.addEventListener("columnFilter",function(e){this.filterData(e)}.bind(this),false);
 	}
-	windowListener(){
-		window.addEventListener("resize",function(e){
-			this.convertToMobile(e);
-		}.bind(this))
+
+	addResizeListener() {
+		this._resizeListener = this.updateMobileView.bind(this);
+		window.addEventListener("resize", this._resizeListener);
 	}
-	convertToMobile(e){
-		let windowWidth=(e)? e.target.outerWidth : window.outerWidth;
-		let methodChoice = (windowWidth<=this.mobileWidth)? "add" : "remove";
-		this.classList[methodChoice]("mobile")
+
+	removeResizeListener() {
+		window.removeEventListener("resize", this._resizeListener);
 	}
+
 	// end behaviors and event handlers
 }
 document.registerElement('voya-table', VoyaTable);

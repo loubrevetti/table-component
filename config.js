@@ -20,13 +20,13 @@ System.config({
   map: {
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "core-js": "npm:core-js@1.2.6",
+    "core-js": "npm:core-js@1.2.7",
     "dom-delegate": "npm:dom-delegate@2.0.3",
     "font-awesome": "npm:font-awesome@4.7.0",
-    "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.1",
-    "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.4.1",
-    "voya-tooltip": "voya-github:Voya/deep-ui-voya-tooltip@2.8.3",
-    "whatwg-fetch": "npm:whatwg-fetch@1.0.0",
+    "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.7.1",
+    "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.5.1",
+    "voya-tooltip": "voya-github:Voya/deep-ui-voya-tooltip@2.9.0",
+    "whatwg-fetch": "npm:whatwg-fetch@1.1.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
     },
@@ -37,10 +37,13 @@ System.config({
       "path-browserify": "npm:path-browserify@0.0.0"
     },
     "github:jspm/nodelibs-process@0.1.2": {
-      "process": "npm:process@0.11.3"
+      "process": "npm:process@0.11.9"
     },
     "github:jspm/nodelibs-util@0.1.0": {
       "util": "npm:util@0.10.3"
+    },
+    "github:jspm/nodelibs-vm@0.1.0": {
+      "vm-browserify": "npm:vm-browserify@0.0.4"
     },
     "npm:assert@1.4.1": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
@@ -55,11 +58,11 @@ System.config({
       "base64-js": "npm:base64-js@0.0.8",
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "ieee754": "npm:ieee754@1.1.6",
+      "ieee754": "npm:ieee754@1.1.8",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:core-js@1.2.6": {
+    "npm:core-js@1.2.7": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
@@ -68,11 +71,11 @@ System.config({
     "npm:debounce@1.0.0": {
       "date-now": "npm:date-now@1.0.1"
     },
-    "npm:font-awesome@4.4.0": {
-      "css": "github:systemjs/plugin-css@0.1.22"
+    "npm:font-awesome@4.6.3": {
+      "css": "github:systemjs/plugin-css@0.1.32"
     },
     "npm:font-awesome@4.7.0": {
-      "css": "github:systemjs/plugin-css@0.1.22"
+      "css": "github:systemjs/plugin-css@0.1.32"
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -80,27 +83,33 @@ System.config({
     "npm:path-browserify@0.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:process@0.11.3": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0"
+    "npm:process@0.11.9": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
     "npm:util@0.10.3": {
       "inherits": "npm:inherits@2.0.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "voya-github:Voya/deep-ui-voya-base-styles@2.4.1": {
-      "compass-mixins": "github:Igosuki/compass-mixins@1.0.2",
-      "font-awesome": "npm:font-awesome@4.4.0"
+    "npm:vm-browserify@0.0.4": {
+      "indexof": "npm:indexof@0.0.1"
     },
-    "voya-github:Voya/deep-ui-voya-component-utils@3.4.1": {
+    "voya-github:Voya/deep-ui-voya-base-styles@2.7.1": {
+      "compass-mixins": "github:Igosuki/compass-mixins@1.0.2",
+      "font-awesome": "npm:font-awesome@4.6.3"
+    },
+    "voya-github:Voya/deep-ui-voya-component-utils@3.5.1": {
       "camelcase": "npm:camelcase@2.1.1",
       "custom-event-polyfill": "npm:custom-event-polyfill@0.2.2",
       "decamelize": "npm:decamelize@1.2.0",
       "focusin": "npm:focusin@2.0.0"
     },
-    "voya-github:Voya/deep-ui-voya-tooltip@2.8.3": {
+    "voya-github:Voya/deep-ui-voya-tooltip@2.9.0": {
       "debounce": "npm:debounce@1.0.0",
-      "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.4.1",
-      "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.4.1"
+      "dom-delegate": "npm:dom-delegate@2.0.3",
+      "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.7.1",
+      "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.5.1"
     }
   }
 });

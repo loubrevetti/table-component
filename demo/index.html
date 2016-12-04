@@ -63,7 +63,7 @@
         sort
         scroll-height="340">
         <voya-column mobile cell-template="<a target='_blank' href='#{{address.link.href}}'>#{{^address.value}}</a>">address</voya-column>
-        <voya-column cell-template="<span class='cityStyle'>#{{^city}}</span>" tooltip='tooltip'>city</voya-column>
+        <voya-column mobile cell-template="<span class='cityStyle'>#{{^city}}</span>" tooltip='tooltip'>city</voya-column>
         <voya-column name="state">state</voya-column>
         <voya-column width="15" mobile mobile-label cell-template="<span class='cityStyle'>#{{^zipcode}}</span>">zip</voya-column>
     </voya-table>
