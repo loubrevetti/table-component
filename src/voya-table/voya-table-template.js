@@ -31,8 +31,9 @@ export function VoyaTableTemplate() {
 		el.querySelector(".voya-table-rows-wrapper").style.maxHeight = el.scrollHeight+"px";
 	}
 	function contentOverflows(el) {
+		if (!el.scrollHeight) return false;
         let wrapper = el.querySelector('.voya-table-rows-wrapper');
-        return wrapper.clientHeight < wrapper.scrollHeight;
+        return el.scrollHeight < wrapper.scrollHeight;
     }
     function handleTableScrolling(el) {
     	if (contentOverflows(el)) el.classList.add('hasOverflowContent');
