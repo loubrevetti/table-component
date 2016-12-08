@@ -14,6 +14,7 @@ class VoyaTable extends NativeHTMLElement {
 		}
 		if(!this.apiUrl) return;
 		this.fetchData();
+		this.addTooltipListeners();
 	}
 	attachedCallback(){
 		this.addResizeListener();
@@ -140,7 +141,8 @@ class VoyaTable extends NativeHTMLElement {
 	buildColsAndRows(e){
 		this.updateColumns();
 		this.rows = this.data.map(function(rec,idx){
-			let row = document.createElement("voya-row")
+			let row = document.createElement("voya-row");
+			row.voyaTable = this;
 			row.columns = this.columns;
 			row.borders = this.borders;
 			row.theme = this.theme;
@@ -178,13 +180,26 @@ class VoyaTable extends NativeHTMLElement {
 		if(col.filter) col.addEventListener("columnFilter",function(e){this.filterData(e)}.bind(this),false);
 	}
 
-	addResizeListener() {
+	addResizeListener(){
 		this._resizeListener = this.updateMobileView.bind(this);
 		window.addEventListener("resize", this._resizeListener);
 	}
 
-	removeResizeListener() {
+	removeResizeListener(){
 		window.removeEventListener("resize", this._resizeListener);
+	}
+
+	addTooltipListeners(){
+		this.addEventListener('voya-tooltip:open', this.pauseScroll.bind(this));
+		this.addEventListener('voya-tooltip:close', this.resumeScroll.bind(this));
+	}
+
+	pauseScroll(){
+		this.classList.add('voya-table--pause-scroll');
+	}
+
+	resumeScroll(){
+		this.classList.remove('voya-table--pause-scroll');
 	}
 
 	// end behaviors and event handlers

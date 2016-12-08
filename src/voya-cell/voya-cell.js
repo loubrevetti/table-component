@@ -89,6 +89,7 @@ export class VoyaCell extends NativeHTMLElement {
     addToolTip(){
         let tooltipText = this.cellValue[this.tooltip];
         this.tooltip = document.createElement('voya-table-tooltip');
+        this.tooltip.voyaTable = this.voyaTable;
         this.tooltip.text = tooltipText;
         this.tooltip.rowIdx = this.rowIdx;
         this.template.insertToolTip(this);

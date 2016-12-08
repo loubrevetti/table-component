@@ -31,8 +31,10 @@ export class Tooltip extends NativeHTMLElement{
         this.voyaTooltip.target = this.querySelector('.tooltipButton');
         this.voyaTooltip.openOn = "click";
         this.voyaTooltip.position ="top bottom right left";
-        this.voyaTooltip.boundingParent = this.parentNode.parentNode.parentNode.parentNode.parentNode;
         this.template.insertVoyaTooltip(this);
+    }
+    detactedCallback() {
+        this.template.removeVoyaTooltip(this);
     }
 }
 document.registerElement('voya-table-tooltip',Tooltip)

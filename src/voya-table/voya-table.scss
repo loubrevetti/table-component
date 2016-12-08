@@ -16,7 +16,7 @@ voya-table{
     display:table;
     content:"";
     clear: both;
-  }
+  } 
   .voya-table-rows-wrapper{
     position:relative;
   }
@@ -25,9 +25,12 @@ voya-table{
       background: transparent;
     }
   }
-  &.hasOverflowContent {
+  .voya-table-rows-wrapper {
+    overflow-y: auto;
+  }
+  &.voya-table--pause-scroll {
     .voya-table-rows-wrapper {
-      overflow-y: auto;
+      overflow-y: hidden;
     }
   }
 

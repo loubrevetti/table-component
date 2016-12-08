@@ -25,7 +25,7 @@ System.config({
     "font-awesome": "npm:font-awesome@4.7.0",
     "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.7.1",
     "voya-component-utils": "voya-github:Voya/deep-ui-voya-component-utils@3.5.1",
-    "voya-tooltip": "voya-github:Voya/deep-ui-voya-tooltip@2.9.0",
+    "voya-tooltip": "voya-github:Voya/deep-ui-voya-tooltip@2.9.2",
     "whatwg-fetch": "npm:whatwg-fetch@1.1.1",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"
@@ -105,7 +105,7 @@ System.config({
       "decamelize": "npm:decamelize@1.2.0",
       "focusin": "npm:focusin@2.0.0"
     },
-    "voya-github:Voya/deep-ui-voya-tooltip@2.9.0": {
+    "voya-github:Voya/deep-ui-voya-tooltip@2.9.2": {
       "debounce": "npm:debounce@1.0.0",
       "dom-delegate": "npm:dom-delegate@2.0.3",
       "voya-base-styles": "voya-github:Voya/deep-ui-voya-base-styles@2.7.1",
