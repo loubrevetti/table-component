@@ -5,6 +5,9 @@ voya-row{
   .voya-row{
     min-height: 20px;
     display: flex;
+    @media only screen and (max-width: 667px) {
+      flex-wrap: wrap;
+    }
   }
   .voya-row:after{
     display:table;
@@ -24,7 +27,7 @@ voya-row{
     border-bottom: 1px solid #aaa;
   }
   .mobile &{
-    margin:15px 0px;
+    margin: 15px 0px;
     &.odd{
       background: #eee;
     }
