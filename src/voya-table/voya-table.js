@@ -113,15 +113,22 @@ class VoyaTable extends NativeHTMLElement {
 		this.rows.map((row)=>row.columns=this.columns);
 	}
 
-	fetchData(){
-		this.services.buildService(this);
-		this.services.loadData(this).then(function(data){
-			this.originalData = JSON.parse(JSON.stringify(data));
-			this.data = data;
-			this.buildColsAndRows();
-			this.addEventListener("columnWidth",this.updateWidths.bind(this))
-		}.bind(this))
-	}
+    fetchData(){
+        this.services.buildService(this);
+        this.services.loadData(this).then(function(data){
+            if (Array.isArray(data)) {
+                this.originalData = JSON.parse(JSON.stringify(data));
+                this.data = data;
+                this.buildColsAndRows();
+                this.addEventListener("columnWidth", this.updateWidths.bind(this))
+            } else {
+                this.originalData = [];
+                this.data = [];
+                console.log('VoyaTable::fetchData() - Invalid table data.');
+            }
+        }.bind(this))
+    }
+
 	resetData(){
 		return JSON.parse(JSON.stringify(this.originalData));
 	}
