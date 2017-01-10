@@ -22,18 +22,13 @@ voya-cell{
         font-family: 'Proxima Nova Bold', 'Proxima Nova'
     }
     //responsive mobile design css
-    @media only screen and (max-width: 768px) {
+    .mobile &{
         float:none;
         display: block;
         width: auto !important;
         flex: 1 0 100%;
-
-        a {
-            overflow: hidden;
-            max-width: 80vw;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            display: block;
+        voya-row.white{
+            padding:5px 2% 2px 2%;
         }
 
         &.non-mobile{
