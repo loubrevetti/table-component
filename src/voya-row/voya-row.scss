@@ -4,8 +4,7 @@ voya-row{
   border-bottom: 1px solid #aaa;
   .voya-row{
     min-height: 20px;
-    display: flex;
-    @media only screen and (max-width: 768px) {
+    .mobile & {
       flex-wrap: wrap;
     }
   }

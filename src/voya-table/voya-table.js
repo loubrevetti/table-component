@@ -104,7 +104,7 @@ class VoyaTable extends NativeHTMLElement {
 		this.columns.forEach(function(col){col[prop]=this[prop];(prop==="sort" || prop==="filter")? this.setColumnListeners(col):null}.bind(this))
 	}
 	updateMobileView(e){
-		let windowWidth=(e)? e.target.outerWidth : window.outerWidth;
+		let windowWidth=(e)? e.target.innerWidth : document.body.clientWidth;
 		let methodChoice = (windowWidth<=this.mobileWidth)? "add" : "remove";
 		this.classList[methodChoice]("mobile");
 	}
