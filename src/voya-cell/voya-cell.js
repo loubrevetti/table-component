@@ -1,7 +1,8 @@
 import {VoyaCellTemplate} from './voya-cell-template';
 import {NativeHTMLElement} from 'voya-component-utils';
 import {property,nullable} from 'voya-component-utils/decorators/property-decorators';
-import {getNestedData} from '../utilities/data-manipulation';
+import {MAP_DATA_FACTORY} from './utilities/cell-data-mappings'
+import {RENDERING_TEMPLATE_FACTORY} from './utilities/cell-template-mappings'
 import {format} from '../utilities/data-formats';
 import {Tooltip} from './tooltip/tooltip';
 export class VoyaCell extends NativeHTMLElement {
@@ -50,41 +51,26 @@ export class VoyaCell extends NativeHTMLElement {
     @property
     rowIdx;
 
+    @property
+    isRepeater;
+
     propertyChangedCallback(prop, oldValue, newValue) {
-        if(oldValue === newValue) return;
+        if(oldValue === newValue) return
     }
     attachedCallback(){
         this.innerHTML=this.template.render(this);
         if(this.cellValue[this.tooltip])this.addToolTip();
     }
+    hasRepeater(){
+      this.isRepeater = (this.cellTemplate.indexOf('repeat-on') != -1);
+    }
 
     renderCellTemplate(){
-        this.mapCellData();
-        this.repaintCellTemplate();
-    }
-
-    mapCellData(){
-        this.cellTemplate.split('#').slice(1).map((dataProperty)=>dataProperty.substring(2,dataProperty.indexOf("}}"))).forEach(function(property){
-            let primaryValue = (property.indexOf('^')!=-1)? property.substring(1):null;
-            if(primaryValue) {this.cellName = (this.cellName === primaryValue) ? primaryValue+"^" : primaryValue;}
-            this.cellData[(primaryValue)? primaryValue : property]=(primaryValue)? this.cellName : property;
-        }.bind(this))
-        for(var property in this.cellData){
-            this.cellData[property]=(this.cellData[property].charAt(this.cellData[property].length-1)!="^")? getNestedData(property,this.cellValue) : this.cellValue;
-            this.cellData[property]=(this.cellData[property] == null)? "": this.cellData[property];
-        }
-    }
-    parseCellData(property,data){
-        for(var dataProperty in data){
-            if(typeof(data[dataProperty])=== 'object' && dataProperty!=property){
-                this.parseCellData(dataProperty,data[dataProperty]);
-                return;
-            }
-            else{
-                this.cellData[property]=data[property];
-                return;
-            }
-        }
+          this.hasRepeater()
+          this.mapData = (this.isRepeater)? MAP_DATA_FACTORY.mapRepeaterData : MAP_DATA_FACTORY.mapObjectData;
+          this.redrawCell = (this.isRepeater)? RENDERING_TEMPLATE_FACTORY.redrawRepeaterTemplate : RENDERING_TEMPLATE_FACTORY.redrawSingleTemplate;
+          this.cellData = this.mapData();
+          this.cellTemplate = this.redrawCell();
     }
     addToolTip(){
         let tooltipText = this.cellValue[this.tooltip];
@@ -93,16 +79,5 @@ export class VoyaCell extends NativeHTMLElement {
         this.tooltip.rowIdx = this.rowIdx;
         this.template.insertToolTip(this);
     }
-    repaintCellTemplate(){
-        Object.keys(this.cellData).forEach(function(item){
-            let replace = new RegExp("\(\\#\\{{(\\^?)"+item+"\\}}\)");
-            if(this.dataFormat && this.cellData[item]!==""){
-                let formatting = (this.dataFormat.indexOf("{") !=-1)? (function(){return Object.keys(JSON.parse(this.dataFormat)).map((format)=>(JSON.parse(this.dataFormat)[format]=== item) ? format : null)[0]}.bind(this))(): this.dataFormat;
-                if(formatting) this.cellData[item] = format.getFormat()[formatting](this.cellData[item]);
-            }
-            this.cellTemplate = this.cellTemplate.replace(replace,this.cellData[item]);
-        }.bind(this));
-    }
-
 }
 document.registerElement('voya-cell', VoyaCell);

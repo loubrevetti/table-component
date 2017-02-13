@@ -19,9 +19,9 @@ table component for deep architecture, this table offers advanced features such 
     ```
 
   * data model assumption ```{'address':'11 main st', 'city':'wolcott', 'state':'CT', 'zipcode':'06489}```
-  
+
     * *please note* **voya-table** *instaniates the table component object, in order to display data from model obtained by table component you must implement* **voya-column** *for each* **key value** *pair you wish to display. The logic of voya-column will use the column label as the* **key** *to search for in the* **model**. *If the key does not match the column label then you would simply need to add a* **name** *attribute to the* **voya-column** *instance.*
-    
+
 #Features
 
 Category | Feature
@@ -41,7 +41,7 @@ Cell-Templating | [cell-template](#cell-template)
 
 ##data model importing *global-instance property*
 * **api-url<a id="api-url"></a>:** property could be either a relative or absolute path to the service that would return a model or a static json file that is loaded with in the application, *note: if it is a static file then please set in api-params the property* **method:GET**
-  * ex: ```relative-path: "/src/stub/staticFile.json", absolute-path: "http://www.voya.com/services/tableservice"``` 
+  * ex: ```relative-path: "/src/stub/staticFile.json", absolute-path: "http://www.voya.com/services/tableservice"```
 
 * **api-params<a id="api-params"></a>:** property which allows developer to implement a reuqest body for service call with in table component
   * ex: ```{'method':"POST", 'payload':{'key1':'value1','key2':'value2','key3':'value3'}}```
@@ -82,8 +82,13 @@ Cell-Templating | [cell-template](#cell-template)
 
 ### templatling *column-instance property*
 * **cell-template<a id="cell-template"></a>:** ability to write inline html to be implemented in column instance
-  * ``` column instance: <voya-column cell-template="<a href='${link.href}'>${^link.name}</a>"></voya-column>```
+  * ``` column instance: <voya-column cell-template="<a href='#{{link.href}}'>#{{^link.name}}</a>"></voya-column>```
   * **${data model property mapping}:** this signature allows for the table to locgically parse out within the model the value (could be deep nested)to be implemented within the template.
   * **${^data model property mapping}**: the carat indicates that this property should be the actual workable value for the table to work with feautres such as sorting
-
-
+  * **${repeat-on}:** this signature allows for developers to loop through arrays of data which in turn will create repeated elements that the repeat-on attribute was applied to, you could have multiple repeat-on's within a template as well
+    * ``` ex 1: <div repeat-on=#{{account}} class='#{{type}}'>#{{amount}}</div>```
+      * the above example would abstract property of address from your data-model and traverse through the array of data creating repeatable divs with account information
+    * ``` ex 2: <div repeat-on=#{{account}} class='#{{type}}'>#{{amount}}
+            <span repeat-on=#{{account.symbols}}>#{{mark}}</span>
+          </div>```
+      * the above example would abstract property of address.symbols from your data-model and traverse through the array of data creating repeatable s[pans within the multiple accounts rendering their symbols.

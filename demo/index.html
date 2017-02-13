@@ -27,34 +27,27 @@
 	body ul li:hover{color:#fff; background:#666; transition:background .25s, color .35s}
 	.voyaWrapper{position:absolute; width:100%; height:100%; overflow:hidden}
 	.voyaWallpaper{ position: absolute; width: 300%; height: 350%; background: url(voyaLogo.png); background-size: 8%; opacity: .10; transform: rotate(30deg); left: -30%;}
+  voya-table a{display:block}
 </style>
+
 <body>
 <div class="voyaWrapper">
 	<div class="voyaWallpaper"></div>
 </div>
 <ul class="toolbar">
     <li data-property="theme" data-value="white">white</li>
-
     <li data-property="column:theme" data-value="orange">column instance orange</li>
-
     <li data-property="theme" data-value="orange">orange</li>
-
     <li data-property="rowAlternating" data-value="true">row alternating</li>
-
     <li data-property="borders" data-value="none">no borders</li>
-
     <li data-property="borders" data-value="vertical">vertical borders</li>
-
     <li data-property="borders" data-value="horizontal">horizontal borders</li>
-
     <li data-property="column:width" data-value="65">instance column width</li>
-
     <li data-property="mobileWidth" data-value="768">responsive table</li>
-
     <li data-property="sort" data-value="true">table sort</li>
 </ul>
 <!-- inline html for implementation to serve for demo purposes. -->
-<div style="z-index: 1; position: relative; max-width:965px; min-width:500px; margin:0px auto; padding:50px 0px;">
+<div style="z-index: 1; position: relative; max-width:965px; min-width:499px; margin:0px auto; padding:50px 0px;">
     <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records"
         mobile-width="768"
         row-alternating
@@ -62,7 +55,7 @@
         theme="white"
         sort
         scroll-height="340">
-        <voya-column mobile cell-template="<a target='_blank' href='#{{address.link.href}}'>#{{^address.value}}</a>">address</voya-column>
+        <voya-column mobile cell-template="<a target='_blank' repeat-on='#{{test.address}}' href='#{{link.href}}'>#{{value}}<span repeat-on='#{{test.address.character}}'>#{{type}}<i>#{{number}}</i><span repeat-on='#{{test.address.character.special}}'>#{{try}}</span></span></a></br>">address</voya-column>
         <voya-column cell-template="<span class='cityStyle'>#{{^city}}</span>" tooltip='tooltip'>city</voya-column>
         <voya-column name="state">state</voya-column>
         <voya-column width="15" mobile mobile-label cell-template="<span class='cityStyle'>#{{^zipcode}}</span>">zip</voya-column>
