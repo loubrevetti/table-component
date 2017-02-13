@@ -23,16 +23,18 @@ export class Tooltip extends NativeHTMLElement{
     createdCallback(){
         this.template = tooltipTemplate();
         this.innerHTML = this.template.render(this);
-        this.active = false
+        this.active = false;
     }
-    attachedCallback(){
+    attachedCallback() {
         this.voyaTooltip = document.createElement('voya-tooltip');
         this.voyaTooltip.innerHTML = this.text;
-        this.voyaTooltip.targetSelector = this.querySelector('.tooltipButton');
-        this.voyaTooltip.boundingSelector = this.parentNode.parentNode.parentNode.parentNode.parentNode;
+        this.voyaTooltip.target = this.querySelector('.tooltipButton');
         this.voyaTooltip.openOn = "click";
-        this.voyaTooltip.position ="bottom top right left";
+        this.voyaTooltip.position ="top bottom right left";
         this.template.insertVoyaTooltip(this);
     }
+    detactedCallback() {
+        this.template.removeVoyaTooltip(this);
+    }
 }
-document.registerElement('tool-tip',Tooltip)
+document.registerElement('voya-table-tooltip',Tooltip)

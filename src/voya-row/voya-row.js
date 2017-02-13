@@ -64,6 +64,7 @@ export class VoyaRow extends NativeHTMLElement {
     buildCells(){
         this.cells = this.columns.map(function(col){
             let cell = document.createElement("voya-cell");
+            cell.voyaTable = this.voyaTable;
             cell.cellViewName = col.name
             cell.cellName = col.name;
             cell.mobile = col.mobile;

@@ -16,16 +16,24 @@ voya-table{
     display:table;
     content:"";
     clear: both;
-  }
+  } 
   .voya-table-rows-wrapper{
     position:relative;
-    overflow-y: auto;
   }
   &.mobile{
     .deep-ui-voya-table {
       background: transparent;
     }
   }
+  .voya-table-rows-wrapper {
+    overflow-y: auto;
+  }
+  &.voya-table--pause-scroll {
+    .voya-table-rows-wrapper {
+      overflow-y: hidden;
+    }
+  }
+
   @media screen and (min-width: 769px) {
     &.hasOverflowContent {
       .voya-table-column-wrapper {
