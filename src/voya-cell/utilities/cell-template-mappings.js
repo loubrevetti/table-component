@@ -1,4 +1,5 @@
 //methods for marrying up template to data
+import {format} from '../../utilities/data-formats';
 function templateRenderingFactory(){
     function redrawRepeaterTemplate(){
       let cell = createTempNode(this.cellTemplate),repeatableTemplate;

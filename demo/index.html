@@ -29,6 +29,45 @@
 	.voyaWrapper{position:absolute; width:100%; height:100%; overflow:hidden}
 	.voyaWallpaper{ position: absolute; width: 300%; height: 350%; background: url(voyaLogo.png); background-size: 8%; opacity: .10; transform: rotate(30deg); left: -30%;}
   voya-table a{display:block}
+  .account .type{
+    text-transform: capitalize;
+    font-family: helvetica;
+    font-size: 12px;
+    font-weight: bolder;
+    padding: 2px 20px 2px 0px;
+  }
+  .account .balance{
+    float: right
+  }
+  .account{
+    display: block;
+    border-bottom: 1px solid #aaa;
+    padding: 5px 0px 0px 0px;
+    font-family: helvetica
+  }
+  .pastBalances{
+    font-size: 10px;
+    background: #6a9cb5;
+  }
+  .pastBalances:after{
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+  }
+  .pastAcct{
+    padding: 2px 2%;
+    background: #6a9cb5;
+    color: #fff;
+    display: inline-block;
+    float: left;
+    width: 33%;
+    text-align: center;
+  }
+  .pastAcct .month{
+    font-weight: bold;
+    padding: 0px 5px 0px 0px;
+  }
 </style>
 
 <body>
@@ -48,7 +87,7 @@
     <li data-property="sort" data-value="true">table sort</li>
 </ul>
 <!-- inline html for implementation to serve for demo purposes. -->
-<div style="z-index: 1; position: relative; max-width:965px; min-width:499px; margin:0px auto; padding:50px 0px;">
+<div style="z-index: 1; position: relative; max-width:1065px; min-width:699px; margin:0px auto; padding:50px 0px;">
     <voya-table api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records"
         mobile-width="768"
         row-alternating
@@ -56,10 +95,10 @@
         theme="white"
         sort
         scroll-height="340">
-        <voya-column mobile cell-template="<a target='_blank' repeat-on='#{{test.address}}' href='#{{link.href}}'>#{{value}}<span repeat-on='#{{test.address.character}}'>#{{type}}<i>#{{number}}</i><span repeat-on='#{{test.address.character.special}}'>#{{try}}</span></span></a></br>">address</voya-column>
-        <voya-column cell-template="<span class='cityStyle'>#{{^city}}</span>" tooltip='tooltip'>city</voya-column>
-        <voya-column name="state">state</voya-column>
-        <voya-column width="15" mobile mobile-label cell-template="<span class='cityStyle'>#{{^zipcode}}</span>">zip</voya-column>
+        <voya-column mobile cell-template="<div class='fname'>#{{fname}}</div>">First name</voya-column>
+        <voya-column mobile cell-template="<div class='lname'>#{{lname}}</div>">Last name</voya-column>
+        <voya-column mobile cell-template="<div class='contact'>#{{contact}}</div>">Contact</voya-column>
+        <voya-column mobile width="50" data-format={"currency":"amount"} cell-template="<div class='account' repeat-on='#{{accounts}}'><span class='type'>#{{type}}:</span><span class='balance'>#{{amount}}</span><div class='pastBalances'><div class='pastAcct' repeat-on='#{{accounts.history}}'><span class='month'>#{{month}}:</span>#{{balance}}</div></div></div>">Accounts</voya-column>
     </voya-table>
 </div>
 <!-- DO NOT REMOVE NEEDED FOR HOOKS TO COMPILED CODE FROM GULP TASKS -->
