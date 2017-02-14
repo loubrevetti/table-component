@@ -4,12 +4,9 @@ export function VoyaTableTemplate() {
 	}
 	function createTableWrapper(tableContent) {
 		let tempDiv = document.createElement('div');
-		tempDiv.className = createClassName();'deep-ui-voya-table';
+		tempDiv.className = 'deep-ui-voya-table';
 		tempDiv.innerHTML = tableContent;
 		return tempDiv;
-	}
-	function createClassName(){
-		document
 	}
 	function buildWrapper(el){
 		return `<div class="voya-table-column-wrapper">

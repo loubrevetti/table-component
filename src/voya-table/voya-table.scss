@@ -2,21 +2,25 @@
 voya-table{
   font-family: Arial;
   font-size: 12px;
-  display: block;
+  display: table;
+  width:100%;
   border-bottom:1px solid #aaa;
   .deep-ui-voya-table{
     background: #fff;
     color:#666;
+    display: table-cell;
   }
   .voya-table-column-wrapper{
     width:100%;
     position:relative;
+    display: table;
+    min-height: 30px;
   }
   .voya-table-column-wrapper:after{
     display:table;
     content:"";
     clear: both;
-  } 
+  }
   .voya-table-rows-wrapper{
     position:relative;
   }

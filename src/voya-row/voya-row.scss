@@ -1,9 +1,12 @@
 /*base style sheet for component skinning*/
 voya-row{
-  display:block;
+  display:table;
+  width:100%;
   border-bottom: 1px solid #aaa;
   .voya-row{
     min-height: 20px;
+    display: table;
+    width: 100%;
     .mobile & {
       flex-wrap: wrap;
     }

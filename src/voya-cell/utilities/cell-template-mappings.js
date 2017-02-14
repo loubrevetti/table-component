@@ -65,7 +65,12 @@ function templateRenderingFactory(){
           Object.keys(cellData).forEach(function(item){
               let replace = new RegExp("\(\\#\\{{(\\^?)"+item+"\\}}\)");
               if(cell.dataFormat && cellData[item]!==""){
-                  let formatting = (cell.dataFormat.indexOf("{") !=-1)? (function(){return Object.keys(JSON.parse(cell.dataFormat)).map((format)=>(JSON.parse(cell.dataFormat)[format]=== item) ? format : null)[0]}.bind(cell))(): cell.dataFormat;
+                  let formatting = (cell.dataFormat.indexOf("{") !=-1)? (function(){return Object.keys(JSON.parse(cell.dataFormat)).map(function(format){
+                  let formatItems = JSON.parse(cell.dataFormat)[format], formatType
+                    if(Array.isArray(formatItems)) formatItems.forEach(function(formatItem){if(formatItem == item) formatType = format});
+                    else formatType = (formatItems === item) ? format : null;
+                    return formatType;
+                  })[0]}.bind(cell))():cell.dataFormat;
                   if(formatting) cellData[item] = format.getFormat()[formatting](cellData[item]);
               }
               template = template.replace(replace,cellData[item]);
