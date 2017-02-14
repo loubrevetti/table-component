@@ -16,6 +16,9 @@ voya-row{
   &.even{
     background: #eee;
   }
+  &.odd{
+    background:#fff;
+  }
   &.vertical{
     border-bottom:0px;
   }
