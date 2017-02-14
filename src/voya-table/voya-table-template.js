@@ -35,10 +35,17 @@ export function VoyaTableTemplate() {
     function handleTableScrolling(el) {
     	if (contentOverflows(el)) el.classList.add('hasOverflowContent');
     }
+		function removeOldRows(el){
+			if(!el.rows) return;
+			Array.from(el.rows).forEach(function(row){
+				el.querySelector(".voya-table-rows-wrapper").removeChild(row);
+			})
+		}
 	return {
 		render:render,
 		addColumns:addColumns,
 		addRows:addRows,
+		removeOldRows:removeOldRows,
 		updateTemplateView:updateTemplateView,
 		handleTableScrolling:handleTableScrolling
 	}

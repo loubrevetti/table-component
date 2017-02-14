@@ -85,10 +85,11 @@
     <li data-property="column:width" data-value="65">instance column width</li>
     <li data-property="mobileWidth" data-value="768">responsive table</li>
     <li data-property="sort" data-value="true">table sort</li>
+    <li data-property="data" data-value="true">load data through JS</li>
 </ul>
 <!-- inline html for implementation to serve for demo purposes. -->
 <div style="z-index: 1; position: relative; max-width:1065px; min-width:699px; margin:0px auto; padding:50px 0px;">
-    <voya-table  binding-property="data.records"
+    <voya-table  api-url="stubs/usaddress.json" fetch-options={"method":"GET"} binding-property="data.records"
         mobile-width="768"
         row-alternating
         borders="none"

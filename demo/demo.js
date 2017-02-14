@@ -14,38 +14,35 @@ function appLoaded(){
 			column[e.target.dataset.property.substring(e.target.dataset.property.indexOf(":")+1)]=value
 			return;
 		}
+		if(e.target.dataset.property.indexOf("data")!=-1){
+			voyaTable.data=null;
+			voyaTable.data = obj;
+			return;
+		}
 		voyaTable[e.target.dataset.property]=(e.target.dataset.value.indexOf(":")!=-1) ? buildValue(e) : value
 	});
 
-	voyaTable.data = {
+	let obj = {
 	    "data": {
 	    "records": [
 	      {
-	        "fname":"John",
-	        "lname":"Carbone",
+	        "fname":"Bernie",
+	        "lname":"Madoff",
 	        "accounts":[
-	          {"amount":"25000.25",
+	          {"amount":"0.25",
 	            "type":"checking",
 	            "history":[
-	              {"month":"December","balance":"12450"},
-	              {"month":"November","balance":"8250"},
+	              {"month":"December","balance":"10"},
+	              {"month":"November","balance":"250"},
 	              {"month":"October","balance":"4050"}
-	            ]
-	          },
-	          {"amount":"8500.75",
-	           "type":"savings",
-	           "history":[
-	              {"month":"December","balance":"2450"},
-	              {"month":"November","balance":"1250"},
-	              {"month":"October","balance":"3050"}
 	            ]
 	          }
 	        ],
-	        "contact":"jc@gmail.com"
+	        "contact":"bmadoff@gmail.com"
 	      },
 	      {
-	        "fname":"Mike",
-	        "lname":"Scandal",
+	        "fname":"Pete",
+	        "lname":"Rose",
 	        "accounts":[
 	          {"amount":"205000.25",
 	            "type":"checking",
@@ -64,38 +61,7 @@ function appLoaded(){
 	            ]
 	          }
 	        ],
-	        "contact":"ms@gmail.com"
-	      },
-	      {
-	        "fname":"Rich",
-	        "lname":"ERich",
-	        "accounts":[
-	          {"amount":"15000.25",
-	            "type":"checking",
-	            "history":[
-	              {"month":"December","balance":"1450"},
-	              {"month":"November","balance":"850"},
-	              {"month":"October","balance":"450"}
-	            ]
-	          },
-	          {"amount":"2500.75",
-	           "type":"savings",
-	           "history":[
-	              {"month":"December","balance":"2450"},
-	              {"month":"November","balance":"1250"},
-	              {"month":"October","balance":"350"}
-	            ]
-	          },
-	          {"amount":"2222500.75",
-	           "type":"IRA",
-	           "history":[
-	              {"month":"December","balance":"200450"},
-	              {"month":"November","balance":"100250"},
-	              {"month":"October","balance":"3050"}
-	            ]
-	          }
-	        ],
-	        "contact":"rer@gmail.com"
+	        "contact":"pRose@gmail.com"
 	      }
 	    ]
 	  }

@@ -26,6 +26,7 @@ class VoyaTable extends NativeHTMLElement {
 		if(oldValue === newValue || !newValue) return;
 		if(prop === "apiUrl") this.fetchData();
 		if(prop === "data" && !Array.isArray(newValue)){
+			this.template.removeOldRows(this)
 			this.mapDataToTable(this.services.parseData(this.bindingProperty,newValue,0))
 		}
 		if(prop === "scrollHeight") this.template.updateTemplateView(this);
