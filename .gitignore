@@ -83,6 +83,7 @@ jspm_packages
 app.css
 app.js
 app.js.map
+/.idea
 /.project
 /.publish
 demo-built.js

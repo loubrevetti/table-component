@@ -23,8 +23,11 @@ class VoyaTable extends NativeHTMLElement {
 		this.removeResizeListener();
 	}
 	propertyChangedCallback(prop, oldValue, newValue) {
-		if(oldValue === newValue && !newValue) return;
+		if(oldValue === newValue || !newValue) return;
 		if(prop === "apiUrl") this.fetchData();
+		if(prop === "data" && !Array.isArray(newValue)){
+			this.mapDataToTable(this.services.parseData(this.bindingProperty,newValue,0))
+		}
 		if(prop === "scrollHeight") this.template.updateTemplateView(this);
 		if((prop=="theme" || prop=="borders" || prop=="rowAlternating" || prop=="sort" || prop=="mobileWidth")){
 			this.updateTableView(prop);
@@ -112,22 +115,24 @@ class VoyaTable extends NativeHTMLElement {
 		this.updateColumns();
 		this.rows.map((row)=>row.columns=this.columns);
 	}
-
-    fetchData(){
-        this.services.buildService(this);
-        this.services.loadData(this).then(function(data){
-            if (Array.isArray(data)) {
-                this.originalData = JSON.parse(JSON.stringify(data));
-                this.data = data;
-                this.buildColsAndRows();
-                this.addEventListener("columnWidth", this.updateWidths.bind(this))
-            } else {
-                this.originalData = [];
-                this.data = [];
-                console.log('VoyaTable::fetchData() - Invalid table data.');
-            }
-        }.bind(this))
-    }
+  fetchData(){
+      this.services.buildService(this);
+      this.services.loadData(this).then(function(data){
+				this.data = data;
+      }.bind(this))
+  }
+	mapDataToTable(data){
+		if (Array.isArray(data)) {
+				this.data = data;
+				this.originalData = JSON.parse(JSON.stringify(data));
+				this.buildColsAndRows();
+				this.addEventListener("columnWidth", this.updateWidths.bind(this))
+		} else {
+				this.originalData = [];
+				this.data = [];
+				console.log('VoyaTable::fetchData() - Invalid table data.');
+		}
+	}
 
 	resetData(){
 		return JSON.parse(JSON.stringify(this.originalData));

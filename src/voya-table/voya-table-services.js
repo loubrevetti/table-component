@@ -22,7 +22,7 @@ export function VoyaTableServices(){
     }
     function loadData(cmp) {
         return callService().then(function(response){
-            return (cmp.bindingProperty.indexOf(".")!=-1) ? parseData(cmp.bindingProperty,response,0) : response[cmp.bindingProperty];
+            return response;
         })
     }
     function parseData(bindingProperty,data,index){
@@ -45,6 +45,7 @@ export function VoyaTableServices(){
         api:api,
         loadData:loadData,
         sort:sort,
-        filter:filter
+        filter:filter,
+        parseData:parseData
     }
 }
