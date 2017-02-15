@@ -17,6 +17,12 @@ export class VoyaCell extends NativeHTMLElement {
     cellViewName;
 
     @property
+    cellIndex;
+
+    @property
+    cellAmount;
+
+    @property
     width;
 
     @property
@@ -56,9 +62,9 @@ export class VoyaCell extends NativeHTMLElement {
 
     propertyChangedCallback(prop, oldValue, newValue) {
         if(oldValue === newValue) return
+        this.innerHTML=this.template.render(this);
     }
     attachedCallback(){
-        this.innerHTML=this.template.render(this);
         if(this.cellValue[this.tooltip])this.addToolTip();
     }
     hasRepeater(){

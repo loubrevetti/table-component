@@ -1,11 +1,8 @@
 export function VoyaRowTemplate() {
-    function render(data){
-        return `<div class="voya-row"></div>`
-    }
     function addCells(el){
-        el.querySelector(".voya-row").innerHTML="";
+        el.innerHTML="";
         el.cells.forEach(function(cell){
-            el.querySelector(".voya-row").appendChild(cell)
+            el.appendChild(cell)
         })
     }
     function updateRowTheme(el){
@@ -29,7 +26,6 @@ export function VoyaRowTemplate() {
         }
     }
     return {
-        render:render,
         addCells:addCells,
         updateRowTheme:updateRowTheme
     }

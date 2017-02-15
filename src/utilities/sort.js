@@ -35,12 +35,12 @@ export class Sort{
         this.sortType = SORT_TYPE[this.clickCount];
         this.addButtonSort();
         this.event.sortType=this.sortType;
-        this.event.columnName=this.col.colLabel;
-        this.event.colIndex = this.col.index;
+        this.event.columnName=this.col.name || this.col.colLabel;
+        this.event.colIndex = this.col.colIndex;
         this.button.dispatchEvent(this.event);
     }
     removeActiveSort(e){
-        if(this.col.colLabel === e.columnName) return;
+        if((this.col.colLabel === e.columnName)||(this.col.name === e.columnName)) return;
         this.button.classList.remove(this.sortType);
         this.clickCount=undefined;
     }

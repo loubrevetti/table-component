@@ -36,6 +36,7 @@ export function getArrayData(searchString,objects){
 }
 
 export function sortData(e,data){
+    e.columnName = e.columnName.toLowerCase();
     data.sort(function(a,b){
         let current = (e.columnName.indexOf('.')!=-1)? getNestedData(e.columnName,a) : a[e.columnName];
         let next =  (e.columnName.indexOf('.')!=-1)? getNestedData(e.columnName,b) : b[e.columnName];

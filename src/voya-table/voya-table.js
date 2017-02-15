@@ -9,6 +9,7 @@ class VoyaTable extends NativeHTMLElement {
 		this.services = VoyaTableServices();
 		this.columns = Array.from(this.querySelectorAll("voya-column"));
 		this.render();
+		this.addEventListener("columnWidth",this.updateWidths.bind(this))
 		if(this.mobileWidth){
 			this.updateMobileView()
 		}
@@ -173,10 +174,10 @@ class VoyaTable extends NativeHTMLElement {
 			flexWidth = flexWidth - width;
 		});
 		this.columns = this.columns.map(function(col,idx){
+			col.colIndex = idx;
 			col.siblings = this.columns;
 			col.colAmount = colAmount;
 			col.flexWidth = flexWidth;
-			col.index = idx;
 			col.theme = (col.theme==null)? this.theme : col.theme;
 			col.borders = (col.borders==null)? this.borders : col.borders;
 			col.sort = (col.sort==null)? this.sort : col.sort;

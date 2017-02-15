@@ -10,13 +10,14 @@ export function VoyaTableTemplate() {
 	}
 	function buildWrapper(el){
 		return `<div class="voya-table-column-wrapper">
+						<div class="voya-table-column-row"></div>
 				</div>
 				<div class="voya-table-rows-wrapper">
 				</div>`
 	}
 	function addColumns(el){
 		el.columns.forEach(function(col){
-			el.querySelector(".voya-table-column-wrapper").appendChild(col)
+			el.querySelector(".voya-table-column-row").appendChild(col)
 		})
 	}
 	function addRows(el){

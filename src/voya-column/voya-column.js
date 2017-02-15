@@ -11,6 +11,7 @@ export class VoyaColumn extends NativeHTMLElement {
         _privateProperties.set(this,_features);
         this.template = VoyaColumnTemplate();
         this.colLabel = this.innerHTML;
+        this.name = this.name;
         this.width = (this.width) ? this.setWidth() : null;
         this.render();
         this.assembleFeatures()

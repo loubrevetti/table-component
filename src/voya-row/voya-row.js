@@ -5,7 +5,6 @@ export class VoyaRow extends NativeHTMLElement {
     createdCallback(){
         this.template = VoyaRowTemplate();
         this.cells = [];
-        this.render();
         this.rowAlternating;
     }
 
@@ -36,9 +35,6 @@ export class VoyaRow extends NativeHTMLElement {
     @property
     @nullable
     cells;
-    render(){
-        this.innerHTML=this.template.render(this)
-    }
     propertyChangedCallback(prop, oldValue, newValue) {
         if(oldValue === newValue) return;
         if(prop === "rowAlternating"){
@@ -62,12 +58,14 @@ export class VoyaRow extends NativeHTMLElement {
         }.bind(this));
     }
     buildCells(){
-        this.cells = this.columns.map(function(col){
+        this.cells = this.columns.map(function(col,idx){
             let cell = document.createElement("voya-cell");
             cell.voyaTable = this.voyaTable;
-            cell.cellViewName = col.name
+            cell.cellViewName = col.name;
             cell.cellName = col.name;
             cell.mobile = col.mobile;
+            cell.cellIndex = col.colIndex;
+            cell.cellAmount = col.colAmount;
             cell.rowIdx = this.idx;
             cell.label = (col.mobileLabel)? col.colLabel : null;
             cell.cellValue = (col.name) ? this.rowData[cell.cellName] : this.rowData;
