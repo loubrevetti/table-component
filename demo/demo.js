@@ -10,7 +10,7 @@ function appLoaded(){
 	delegate(toolbar).on('click',"li",function(e){
 		let value = (e.target.dataset.value=='true' || e.target.dataset.value=='false')? JSON.parse(e.target.dataset.value):e.target.dataset.value;
 		if(e.target.dataset.property.indexOf("column")!=-1){
-			let column = document.querySelector("voya-column");
+			let column = document.querySelectorAll("voya-column")[3];
 			column[e.target.dataset.property.substring(e.target.dataset.property.indexOf(":")+1)]=value
 			return;
 		}
