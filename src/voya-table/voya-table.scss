@@ -3,6 +3,7 @@ voya-table{
   font-family: Arial;
   font-size: 12px;
   display: table;
+  table-layout: fixed;
   width:100%;
   border-bottom:1px solid #aaa;
   .deep-ui-voya-table{
@@ -17,11 +18,13 @@ voya-table{
     width:100%;
     position:relative;
     display: table;
+    table-layout:fixed;
     min-height: 30px;
   }
   .voya-table-rows-wrapper{
     position:relative;
     display:table;
+    table-layout:fixed;
     width:100%;
   }
   &.mobile{

@@ -2,7 +2,7 @@
 voya-column{
     position: relative;
     display: table-cell;
-    padding: 0px 2%;
+    padding: 10px 8px;
     background: linear-gradient(to bottom, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
     border: 1px solid #aaa;
     border-right: 0px;
@@ -10,6 +10,7 @@ voya-column{
     font-weight: bold;
     font-size: 14px;
     color: #666;
+    word-break: break-all;
     &.cursor{
       cursor:pointer;
     }
@@ -33,11 +34,9 @@ voya-column{
     }
 
     div.label{
-      position: absolute;
-      display:block;
-      padding:0px 0px;
-      top:50%;
-      transform: translateY(-50%);
+      position: relative;
+      float: left;
+      display: inline;
     }
     div:after{
       display:table;
@@ -45,11 +44,9 @@ voya-column{
       clear: both;
     }
     div.voya-col-actions{
-      position: absolute;
-      right: 0px;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 0px 5px;
+      position: relative;
+      float: right;
+      margin-top: 3%;
     }
     div.voya-col-actions > div{
       padding:0px 2px;
