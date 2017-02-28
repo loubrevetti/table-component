@@ -86,7 +86,7 @@ export class VoyaColumn extends NativeHTMLElement {
             }
             if(prop==="width"){
                 this.width = this.setWidth();
-                if(isNaN(this.width))return;
+                if(isNaN(this.width) || !this.data)return;
                 this.dispatchEvent(this.event);
                 this.template.updateColumnWidth(this);
             }
