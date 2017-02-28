@@ -10,6 +10,9 @@ voya-table{
     color:#666;
     display: table-cell;
   }
+  .scroll-wrapper{
+    overflow-y: auto;
+  }
   .voya-table-column-wrapper{
     .voya-table-column-row{
       display:table-row;
@@ -31,9 +34,6 @@ voya-table{
     .deep-ui-voya-table {
       background: transparent;
     }
-  }
-  .voya-table-rows-wrapper {
-    overflow-y: auto;
   }
   &.voya-table--pause-scroll {
     .voya-table-rows-wrapper {

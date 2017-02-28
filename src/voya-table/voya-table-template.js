@@ -12,8 +12,10 @@ export function VoyaTableTemplate() {
 		return `<div class="voya-table-column-wrapper">
 						<div class="voya-table-column-row"></div>
 				</div>
-				<div class="voya-table-rows-wrapper">
-				</div>`
+				<div class="scroll-wrapper">
+				<div class="voya-table-rows-wrapper"></div>
+				</div>
+				`
 	}
 	function addColumns(el){
 		el.columns.forEach(function(col){
@@ -26,7 +28,7 @@ export function VoyaTableTemplate() {
 		})
 	}
 	function updateTemplateView(el){
-		el.querySelector(".voya-table-rows-wrapper").style.maxHeight = el.scrollHeight+"px";
+		el.querySelector(".scroll-wrapper").style.maxHeight = el.scrollHeight+"px";
 	}
 	function contentOverflows(el) {
 		if (!el.scrollHeight) return false;
