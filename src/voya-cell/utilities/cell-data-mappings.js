@@ -32,7 +32,7 @@ function mapDataFactory(){
           return {repeater:arrayProp, childProps:childProps}
       }.bind(cell));
     }
-     return{
+    return{
        mapObjectData:mapObjectData,
        mapRepeaterData:mapRepeaterData
      }

@@ -8,9 +8,13 @@ function templateRenderingFactory(){
           let finalTemplate = mergeDataToTemplate(this,this.cellData[property],template);
           repeatableTemplate = mergeTemplate(template,mergeRepeaters(finalTemplate),repeatableTemplate);
       }.bind(this))
-      let s = document.createElement('span')
+      let s = document.createElement('span');
       s.innerHTML = repeatableTemplate;
-      return repeatableTemplate;
+      let p = document.createElement('span');
+      p.innerHTML = this.cellTemplate
+      let child = p.querySelector("[repeat-on]");
+      child.parentNode.replaceChild(s, child);
+      return p.innerHTML;
     }
 
     function redrawSingleTemplate(){
