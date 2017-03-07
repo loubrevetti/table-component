@@ -97,10 +97,10 @@
         theme="white"
         sort
         scroll-height="940">
-        <voya-column mobile name="fname">First name</voya-column>
+        <voya-column mobile name="Fname">First name</voya-column>
         <voya-column mobile name="lname">Last name</voya-column>
         <voya-column mobile name="contact">Contact</voya-column>
-        <voya-column mobile data-format={"currency":["amount","balance"]} cell-template="<div class='account' ><span class='type'>#{{type}}:</span><span class='balance'>#{{amount}}</span><div class='pastBalances'><div class='pastAcct' repeat-on='#{{accounts.history}}'><span class='month'>#{{month}}:</span>#{{balance}}</div></div></div>">Accounts</voya-column>
+        <voya-column mobile data-format={"currency":["amount","balance"]} cell-template="<div class='account' repeat-on='#{{accounts}}'><span class='type'>#{{type}}:</span><span class='balance'>#{{amount}}</span><div class='pastBalances'><div class='pastAcct' repeat-on='#{{accounts.history}}'><span class='month'>#{{month}}:</span>#{{balance}}</div></div></div>">Accounts</voya-column>
     </voya-table>
 </div>
 <!-- DO NOT REMOVE NEEDED FOR HOOKS TO COMPILED CODE FROM GULP TASKS -->

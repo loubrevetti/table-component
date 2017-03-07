@@ -2,7 +2,7 @@
     "data": {
     "records": [
       {
-        "fname":"John",
+        "Fname":"John",
         "lname":"Carbone",
         "accounts":[
           {"amount":"25000.25",
@@ -25,7 +25,7 @@
         "contact":"jc@gmail.com"
       },
       {
-        "fname":"Mike",
+        "Fname":"Mike",
         "lname":"Scandal",
         "accounts":[
           {"amount":"205000.25",
@@ -48,7 +48,7 @@
         "contact":"ms@gmail.com"
       },
       {
-        "fname":"Rich",
+        "Fname":"Rich",
         "lname":"ERich",
         "accounts":[
           {"amount":"15000.25",
