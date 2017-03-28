@@ -65,9 +65,7 @@ export class VoyaCell extends NativeHTMLElement {
         this.innerHTML=this.template.render(this);
         if(this.ttContent) this.addToolTip();
     }
-    attachedCallback(){
-        //if(this.cellValue[this.tooltip])this.addToolTip();
-    }
+    
     hasRepeater(){
       this.isRepeater = (this.cellTemplate.indexOf('repeat-on') != -1);
     }
