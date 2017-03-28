@@ -71,7 +71,7 @@ export class VoyaRow extends NativeHTMLElement {
             cell.cellValue = (col.name) ? this.rowData[cell.cellName] : this.rowData;
             cell.cellTemplate = (col.cellTemplate)? col.cellTemplate : null;
             cell.dataFormat = (col.dataFormat)? col.dataFormat : null;
-            cell.tooltip = (col.tooltip)?col.tooltip : null;
+            cell.ttContent = (col.tooltip) ? this.rowData[col.tooltip] : null;
             if(cell.cellTemplate) cell.renderCellTemplate();
             cell.width = col.width;
             return cell;

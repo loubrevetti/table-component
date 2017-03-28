@@ -28,6 +28,7 @@ function appLoaded(){
 	      {
 	        "fname":"Bernie",
 	        "lname":"Madoff",
+	        "tooltip": "tooltip content",
 	        "accounts":[
 	          {"amount":"0.25",
 	            "type":"checking",

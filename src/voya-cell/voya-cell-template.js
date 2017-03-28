@@ -10,7 +10,7 @@ export function VoyaCellTemplate() {
         return `<div class="voya-cell ${el.cellName}"><span class="label">${el.label}: </span>${content}</div>`
     }
     function insertToolTip(el){
-        if(!el.querySelector('.voya-cell')) return;
+        if(!el.querySelector('.voya-cell') || !el.tooltip) return;
         el.querySelector('.voya-cell').appendChild(el.tooltip);
     }
     return {
