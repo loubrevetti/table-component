@@ -3,10 +3,10 @@ export function tooltipTemplate(){
         return `<div class="tooltipButton fa fa-question"></div>`
     }
     function insertVoyaTooltip(el){
-        el.voyaTable.appendChild(el.voyaTooltip);
+        el.voyaTableContainer.appendChild(el.voyaTooltip);
     }
     function removeVoyaTooltip(el){
-        el.voyaTable.removeChild(el.voyaTooltip);
+        el.voyaTableContainer.removeChild(el.voyaTooltip);
     }
     return{
         render:render,
