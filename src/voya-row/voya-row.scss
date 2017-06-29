@@ -28,7 +28,7 @@ voya-row{
   &.none{
     border-bottom:0px;
   }
-  &.horizontal{
+  &.horizontal voya-cell{
     border-bottom: 1px solid #aaa;
   }
   .mobile &{

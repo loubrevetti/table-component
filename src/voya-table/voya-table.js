@@ -178,6 +178,7 @@ class VoyaTable extends NativeHTMLElement {
 			col.siblings = this.columns;
 			col.colAmount = colAmount;
 			col.flexWidth = flexWidth;
+			col.data = this.data;
 			col.theme = (col.theme==null)? this.theme : col.theme;
 			col.borders = (col.borders==null)? this.borders : col.borders;
 			col.sort = (col.sort==null)? this.sort : col.sort;

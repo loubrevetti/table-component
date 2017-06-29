@@ -26,8 +26,9 @@ function appLoaded(){
 	    "data": {
 	    "records": [
 	      {
-	        "fname":"Bernie",
+	        "Fname":"Bernie",
 	        "lname":"Madoff",
+	        "tooltip": "tooltip content",
 	        "accounts":[
 	          {"amount":"0.25",
 	            "type":"checking",
@@ -41,7 +42,7 @@ function appLoaded(){
 	        "contact":"bmadoff@gmail.com"
 	      },
 	      {
-	        "fname":"Pete",
+	        "Fname":"Pete",
 	        "lname":"Rose",
 	        "accounts":[
 	          {"amount":"205000.25",

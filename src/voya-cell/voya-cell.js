@@ -52,7 +52,7 @@ export class VoyaCell extends NativeHTMLElement {
 
     @property
     @nullable
-    tooltip;
+    ttContent;
 
     @property
     rowIdx;
@@ -63,10 +63,9 @@ export class VoyaCell extends NativeHTMLElement {
     propertyChangedCallback(prop, oldValue, newValue) {
         if(oldValue === newValue) return
         this.innerHTML=this.template.render(this);
+        if(this.ttContent) this.addToolTip();
     }
-    attachedCallback(){
-        if(this.cellValue[this.tooltip])this.addToolTip();
-    }
+    
     hasRepeater(){
       this.isRepeater = (this.cellTemplate.indexOf('repeat-on') != -1);
     }
@@ -79,10 +78,9 @@ export class VoyaCell extends NativeHTMLElement {
           this.cellTemplate = this.redrawCell();
     }
     addToolTip(){
-        let tooltipText = this.cellValue[this.tooltip];
         this.tooltip = document.createElement('voya-table-tooltip');
-        this.tooltip.voyaTable = this.voyaTable;
-        this.tooltip.text = tooltipText;
+        this.tooltip.voyaTableContainer = this.voyaTable.querySelector('.deep-ui-voya-table');
+        this.tooltip.text = this.ttContent;
         this.tooltip.rowIdx = this.rowIdx;
         this.template.insertToolTip(this);
     }
